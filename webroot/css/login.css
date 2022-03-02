@@ -1,0 +1,14 @@
+.login {
+  background-color: #FDDADA;
+  height:110px;
+  width:190px;
+  margin:100px auto;
+  border:1px #CCC solid;
+  padding:40px;
+}
+
+.login input {
+  padding:5px 20px;
+  margin:5px
+
+}

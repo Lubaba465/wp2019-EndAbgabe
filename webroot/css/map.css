@@ -1,0 +1,12 @@
+ .container {
+     height: 450px;
+ }
+
+#map {
+    width: 65%;
+    height: 100%;
+    border: 1px solid blue;
+}
+#data, #allData {
+    display: none;
+}
