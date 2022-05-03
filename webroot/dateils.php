@@ -12,7 +12,7 @@
 
 
 <?php
-include_once ($_SERVER['DOCUMENT_ROOT']."/../config.php");
+include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
 include_once("usermodul.php");
 include ("templates/header.php");
 ?>

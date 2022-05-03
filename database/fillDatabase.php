@@ -119,24 +119,10 @@ $sql = "CREATE TABLE IF NOT EXISTS gc_rating_castles(
 $conn->exec($sql);
 
 
-$sql = " CREATE TABLE IF NOT EXISTS gc_comments (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-	c_text TEXT NOT NULL,
-	name VARCHAR(50) NOT NULL,
-	time Date NOT NULL ,
-    castleid INTEGER,
-    userid VARCHAR(50),
-    FOREIGN KEY (userid) REFERENCES gc_users(userid),
-	FOREIGN KEY(castleid) REFERENCES gc_castles(castleid)
-    )";
-$conn->exec($sql);
 
-$sql = " CREATE TABLE IF NOT EXISTS gc_pages (
-        page_id INTEGER PRIMARY KEY AUTOINCREMENT,
-	page_title VARCHAR(255) NOT NULL, 
-	page_desc text  
-    )";
-$conn->exec($sql);
+
+
+
 
 //    --SQLite Syntax
 //    $sql = "INSERT IGNORE INTO gc_counties (countyid, name, location) VALUES

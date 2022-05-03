@@ -15,7 +15,7 @@ try {
 
             einloggen($_POST["email"], $_POST["password"]);
             if (isteingeloggt()) {
-                header('Location:/admin.php');
+                header('Location:/wp2019EndAbgabe/webroot/admin.php');
 
             } else {
                 $message = '<center><label style="color: red" >email oder password sind falsch</label></center>';

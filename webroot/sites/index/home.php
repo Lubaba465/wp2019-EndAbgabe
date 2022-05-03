@@ -35,10 +35,10 @@
                         <?php
 
 
-                        include_once ($_SERVER['DOCUMENT_ROOT']."/../config.php");
+                        include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
                         $db = $DB;
 
-                        $sql = "SELECT * FROM gc_comments  desc limit 1";
+                        $sql = "SELECT * FROM gc_comments ";
 
                         $ergebnis = $db->query($sql);
 
@@ -57,7 +57,7 @@
                         ?>
                         <?php
 
-                        include_once ($_SERVER['DOCUMENT_ROOT']."/../config.php");
+                        include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
                         $db = $DB;
 
                         $sql = "SELECT * FROM  gc_castle_fotos   where castleid=$castleid limit 1";

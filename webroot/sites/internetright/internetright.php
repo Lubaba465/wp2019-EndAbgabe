@@ -3,7 +3,7 @@
 <div class="content-grid">
     <?php
 
-    require_once ($_SERVER['DOCUMENT_ROOT']."/../database/dbconfig.php");
+    require_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/database/dbconfig.php");
 
     $pageDetails = $_GET["type"];
 

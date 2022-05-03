@@ -8,13 +8,13 @@ define('SITE_DIR', '/german-webroot/');
 // database prefix if you use
 define('DB_PREFIX', 'gc_');
 
-define('DB_DRIVER', 'sqlite');
-//define('DB_DRIVER', 'mysql');
+// define('DB_DRIVER', 'sqlite');
+define('DB_DRIVER', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_HOST_USERNAME', 'root');
 define('DB_HOST_PASSWORD', '');
-//define('DB_DATABASE', 'german_castles');
-define('DB_DATABASE', $_SERVER['DOCUMENT_ROOT']."/../database/german_castles.db");
+define('DB_DATABASE', 'german_castles');
+//define('DB_DATABASE', $_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/database/german_castles.db");
 
 define('SITE_NAME', 'German Castles');
 

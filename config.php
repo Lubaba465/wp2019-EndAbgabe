@@ -6,7 +6,7 @@ ob_start();
 
 require_once("constants.php");
 require_once("webroot/libs/common_functions.php");
-require_once ($_SERVER['DOCUMENT_ROOT']."/../database/dbconfig.php");
+require_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/database/dbconfig.php");
 require_once ("webroot/usermodul.php");
 
 

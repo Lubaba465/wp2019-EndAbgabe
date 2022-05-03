@@ -8,7 +8,7 @@
 </head>
 <?php
 require("magazin_controller.php");
-require($_SERVER['DOCUMENT_ROOT'] . '/../config.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/wp2019EndAbgabe/config.php');
 
 $magazinController = new magazin_controller();
 //$userid = $_SESSION['userid'];

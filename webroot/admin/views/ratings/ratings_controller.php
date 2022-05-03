@@ -1,5 +1,5 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT'] . '/../config.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/wp2019EndAbgabe/config.php');
 
 $db = $DB;
 

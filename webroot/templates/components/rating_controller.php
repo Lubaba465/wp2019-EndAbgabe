@@ -2,7 +2,7 @@
 
 // ratings für user
 
-include_once ($_SERVER['DOCUMENT_ROOT']."/../config.php");
+include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
 
 if (isset($_POST['rating']) && isset($_POST['castleid'])) {
 

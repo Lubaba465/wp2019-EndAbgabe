@@ -3,7 +3,7 @@ if (isset($_GET["magazintype"])){
 $user = "root";
 $pw = null;
 
-include_once ($_SERVER['DOCUMENT_ROOT']."/../config.php");
+include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
 $db = $DB;
 
 $magazintype = $_GET["magazintype"];

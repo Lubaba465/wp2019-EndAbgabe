@@ -1,6 +1,6 @@
 <?php
 session_start();
-require($_SERVER['DOCUMENT_ROOT'] . '/../config.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/wp2019EndAbgabe/config.php');
 
 $userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 'anonym';
 

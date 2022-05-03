@@ -7,7 +7,7 @@ if (isset($_POST["userid"]) &&
     try {
 
 
-        include_once ($_SERVER['DOCUMENT_ROOT']."/../config.php");
+        include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
         $db = $DB;
 
 
@@ -43,7 +43,6 @@ if (isset($_POST["userid"]) &&
             $kommando->execute($werte);
 
 
-            header("Location:/");
 
 
             ?>

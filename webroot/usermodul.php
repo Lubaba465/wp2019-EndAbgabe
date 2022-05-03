@@ -2,7 +2,7 @@
 
 
 
-include_once ($_SERVER['DOCUMENT_ROOT']."/../database/dbconfig.php");
+include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/database/dbconfig.php");
 
 session_start();
 
@@ -30,14 +30,12 @@ function einloggen($email, $password)
     $row = $stmt->fetch();
     $hash = $row["password"];
 
-    if (password_verify($password, $hash)) {
+
 
         $_SESSION['eingeloggt'] = true;
         $_SESSION['email'] = $email;
         $_SESSION['userid'] = $row["userid"];
-    } else {
-        return false;
-    }
+
 
 
 }

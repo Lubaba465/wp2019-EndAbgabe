@@ -1,6 +1,6 @@
 <?php
 
-require_once ($_SERVER['DOCUMENT_ROOT']."/../config.php");
+require_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
 
 class media_controller
 {

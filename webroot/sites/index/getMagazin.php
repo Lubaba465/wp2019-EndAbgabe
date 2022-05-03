@@ -1,7 +1,7 @@
 <?php
 
 
-include_once ($_SERVER['DOCUMENT_ROOT']."/../config.php");
+include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
 $db = $DB;
 
 $sql = "SELECT * FROM gc_castle_magazin where magazin_type= 'E'order by castleid desc limit 1";
