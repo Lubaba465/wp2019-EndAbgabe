@@ -6,7 +6,9 @@ session_start();
 $userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 'anonym';
 $db = $DB;
 
-if (isset($_POST["newCastle"])) {
+if (isset($_POST["castlename"])) {
+
+
     $mountain = isset($_POST['mountain']) == 'Y' ? 'Y' : 'N';
     $desert = isset($_POST['desert']) == 'Y' ? 'Y' : 'N';
     $forest = isset($_POST['forest']) == 'Y' ? 'Y' : 'N';
@@ -85,7 +87,7 @@ if (isset($_POST["newCastle"])) {
     }
 }
 
-if (isset($_POST["castlename"])) {
+if (isset($_POST["fth"])) {
     try {
         $db_user = "root";
         $db_pass = "";

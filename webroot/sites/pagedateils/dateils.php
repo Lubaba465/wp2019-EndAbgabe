@@ -12,7 +12,7 @@
     include "commentsaddphp.php";
 
     ?>
-    include "commentsaddphp.php";
+
 
     <div class="content-grid">
         <div>

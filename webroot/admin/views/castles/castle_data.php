@@ -69,7 +69,90 @@ if ($castle_id == 0) {
     $cTwitter = $castle['twitter'];
 }
 ?>
+<?php
+if (isset($_POST["newCastle"])) {
+    echo "Eintrag hinzugef";
 
+    $mountain = isset($_POST['mountain']) == 'Y' ? 'Y' : 'N';
+    $desert = isset($_POST['desert']) == 'Y' ? 'Y' : 'N';
+    $forest = isset($_POST['forest']) == 'Y' ? 'Y' : 'N';
+    $sea = isset($_POST['sea']) == 'Y' ? 'Y' : 'N';
+    $disabled = isset($_POST['disabled']) == 'Y' ? 'Y' : 'N';
+    $parking = isset($_POST['parking']) == 'Y' ? 'Y' : 'N';
+    $gastro = isset($_POST['gastro']) == 'Y' ? 'Y' : 'N';
+    $userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 'anonym';
+    try {
+        session_start();
+
+        $userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 'anonym';
+        $db_user = "root";
+        $db_pass = "";
+        $db_name = "german_castles";
+        $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
+
+        $create_date = date("Y-m-d H:i:s");
+        $sql = "INSERT INTO gc_castles(
+                  userid,
+                  name,
+                  description,
+                  construction_year,
+                  castle_size,
+                  county,
+                  city,
+                  street,
+                  zipcode,
+                  near_mountain,
+                  near_desert,
+                  near_forest,
+                  near_sea,
+                  disabled_access,
+                  parking,
+                  gastronomy,
+                  email,
+                  website,
+                  facebook,
+                  instagram,
+                  twitter,
+                  lat,
+                  lng,
+                  create_date
+                  )
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $values = array(
+            $userid,
+            $_POST["castlename"],
+            $_POST["castledesc"],
+            ($_POST["year"] == "") ? 0 : $_POST["year"],
+            ($_POST["size"] == "") ? 0 : $_POST["size"],
+            $_POST["counties"],
+            $_POST["city"],
+            $_POST["address"],
+            $_POST["zipcode"],
+            $mountain,
+            $desert,
+            $forest,
+            $sea,
+            $disabled,
+            $parking,
+            $gastro,
+            $_POST["email"],
+            $_POST["website"],
+            $_POST["facebook"],
+            $_POST["instagram"],
+            $_POST["twitter"],
+            $_POST["lat"],
+            $_POST["lng"],
+            $create_date
+        );
+        $command = $db->prepare($sql);
+        $command->execute($values);
+        echo "Eintrag hinzugef";
+
+    } catch (PDOException $e) {
+        echo 'Fehler: ' . htmlspecialchars($e->getMessage());
+    }
+}
+?>
 <h1 class="content-title">Schloss <?php echo $cTransType ?></h1>
 <div class="castle-container">
     <form action="" method="post" enctype="multipart/form-data">
@@ -195,11 +278,13 @@ if ($castle_id == 0) {
             <?php
         }
         ?>
-        <input type="submit" id="updCastle" name="updCastle" value="<?php echo $cTransType; ?>">
+        <input type="submit"  name="newCastle"
+               id="newCastle"  value="<?php echo $cTransType; ?>">
 
     </form></div>
+
     <script>
-        $("#updCastle").click(function () {
+        $("#newCastle").click(function () {
 var castleid=document.getElementById("castleid").value;
             var cName =  document.getElementById("castlename").value;
             var cDescription =  document.getElementById("castledesc").value;
