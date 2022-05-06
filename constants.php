@@ -21,7 +21,7 @@ define('SITE_NAME', 'German Castles');
 // define database tables
 define('TABLE_USERS', DB_PREFIX.'users');
 define('TABLE_COUNTIES', DB_PREFIX.'counties');
-define('TABLE_CASTLES', DB_PREFIX.'webroot');
+define('TABLE_CASTLES', DB_PREFIX.'castles');
 define('TABLE_CASTLE_FOTOS', DB_PREFIX.'castle_fotos');
 define('TABLE_CASTLE_MAGAZIN', DB_PREFIX.'castle_magazin');
 define('TABLE_RATING_FOTOS', DB_PREFIX.'rating_fotos');

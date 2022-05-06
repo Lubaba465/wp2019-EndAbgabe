@@ -4,7 +4,7 @@
 <head>
 
     <link rel="stylesheet" href="css/index.css">
-    <script src="js/admin/castles.js"></script>
+    <script src="js/admin/castls.js"></script>
 </head>
 <body>
 <?php

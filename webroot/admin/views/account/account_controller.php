@@ -6,23 +6,22 @@ $userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 'anonym';
 $db = $DB;
 
 
-if (isset($_POST["pwAccUpd"]) && isset($_SESSION['userid'])) {
+if (isset($_POST["fname"])) {
     try {
-        if (checkAccountInfo($userid, $_GET["pwAccUpd"])) {
+
+
             $sql = "UPDATE " . TABLE_USERS . " SET
                 fname ='" . $_POST["fname"] . "',
                 lname ='" . $_POST["lname"] . "',
-                email ='" . $_POST["email"] . "',
-                update_date = datetime('now')                 
-                WHERE userid = '" . $userid . "'";
-            $stmt = $db->prepare($sql);
-            $stmt->execute();
+                email ='" . $_POST["email"] . "'
+                 WHERE userid = '" . $userid . "'";
+            $stmt = $db->query($sql);
             if ($stmt->rowCount() > 0) {
                 session_destroy();
                 echo 'Ihre Daten wurden aktualisiert!';
             } else {
                 echo 'Ihr Daten wurden nicht aktualisiert!';
-            }
+
         }
     } catch (PDOException $e) {
         echo 'Fehler: ' . htmlspecialchars($e->getMessage());
@@ -81,7 +80,7 @@ function checkAccountInfo($userid, $password)
         $sql = "SELECT * FROM " . TABLE_USERS . " WHERE 
                 userid = '" . $userid . "' LIMIT 1";
         $rs = $db->query($sql);
-        $row = $rs->fetch();
+        $row = $rs;
         $hash = $row['password'];
 
         if (password_verify($password, $hash)) {
@@ -113,10 +112,18 @@ class account_controller
 
     function getAccountData()
     {
+        $db_user = "root";
+        $db_pass = "";
+        $db_name = "german_castles";
+
+        $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
+
+        $userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 'anonym';
+
         try {
-            $sql = "SELECT * FROM " . TABLE_USERS . " WHERE 
-                userid = '" . $this->userid . "' AND userid <> 'anonym'";
-            $rs = $this->db->query($sql);
+            $sql = "SELECT * FROM " . TABLE_USERS . "  WHERE 
+                userid = '" . $userid . "' ";
+            $rs = $db->query($sql);
         } catch (Exception $ex) {
             echo errorMessage($ex->getMessage());
         }

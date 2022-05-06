@@ -3,18 +3,19 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/admin/castles.css">
     <link rel="stylesheet" href="css/admin/side-nav.css">
-    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="js/admin/castles.js"></script>
+    <script type="text/javascript" src="js/admin/castls.js"></script>
 </head>
 <?php
 require("castles_controller.php");
 require($_SERVER['DOCUMENT_ROOT'] . '/wp2019EndAbgabe/config.php');
 $castlesController = new castles_controller();
+
 $castlesList = $castlesController->getCastlesAdmin();
 ?>
 <div id="castles">
     <h1 class="content-title">Meine Schlösser</h1>
     <?php
+
     foreach ($castlesList as $row) {
         include 'castle_overview.php';
     }

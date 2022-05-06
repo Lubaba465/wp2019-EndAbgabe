@@ -4,13 +4,16 @@
     include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
 
 
-    include "commentsaddphp.php";
 
 
     include "dateilscastle.php";
     foreach ($d as $data)
         $castleId = $data['castleid'];
+    include "commentsaddphp.php";
+
     ?>
+    include "commentsaddphp.php";
+
     <div class="content-grid">
         <div>
             <h2 class="cnt-headline"><?php echo($data['name']); ?></h2>

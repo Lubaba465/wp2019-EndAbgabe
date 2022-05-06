@@ -42,7 +42,7 @@ foreach ($ergebnis as $zeile) { ?>
 
         <img class="portrait" src="img/uploads/<?php echo $zeile['file_name'] ?>"/>
     <?php } ?>
-    <a class="black" href="../dateils.php?id=<?php echo
+    <a class="black" href="../webroot/dateils.php?id=<?php echo
     ($zeile["castleid"]); ?> ">mehr informationen finden sie hier</a>
 
 

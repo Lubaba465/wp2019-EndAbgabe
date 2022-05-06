@@ -1,8 +1,6 @@
 <head>
     <link rel="stylesheet" href="css/admin/castles.css">
     <link rel="stylesheet" href="css/admin/side-nav.css">
-    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="js/admin/castles.js"></script>
 
 </head>
 <?php
@@ -74,7 +72,7 @@ if ($castle_id == 0) {
 
 <h1 class="content-title">Schloss <?php echo $cTransType ?></h1>
 <div class="castle-container">
-    <form action="admin/castles_controller.php" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data">
         <input class="content-grid" id="castleid" name="castleid" type="hidden" value="<?php echo $cCastleId ?>">
         <input class="content-grid" type="text" id="castlename" name="castlename" placeholder="Schloss Name..."
                value="<?php echo $cName ?>">
@@ -98,7 +96,7 @@ if ($castle_id == 0) {
 
         <label class="content-grid">Adresse</label>
         <ul>
-            <label class="content-grid" for="county">Bundesland</label>
+            <label class="content-grid" id="county" for="county">Bundesland</label>
             <?php
             $countiesList = $castlesController->getCounties();
 
@@ -133,21 +131,21 @@ if ($castle_id == 0) {
         <label class="content-grid">Umgebung</label>
         <div class="content-grid">
             <a class="column-left">
-                <div><input type="checkbox" name="mountain" value="Y"
+                <div><input type="checkbox" name="mountain" value="Y" id="mountain"
                         <?php if ($cMountain == 'Y') { ?> checked="checked" <?php } ?>>
                     <label>Gebirge</label>
                 </div>
-                <div><input type="checkbox" name="desert" value="Y"
+                <div><input type="checkbox" name="desert" value="Y" id="desert"
                         <?php if ($cDesert == 'Y') { ?> checked="checked" <?php } ?>>
                     <label>Wüste</label>
                 </div>
             </a>
             <a class="column-right">
-                <div><input type="checkbox" name="forest" value="Y"
+                <div><input type="checkbox" name="forest" value="Y" id="forest"
                         <?php if ($cForest == 'Y') { ?> checked="checked" <?php } ?> >
                     <label>Wald</label>
                 </div>
-                <div><input type="checkbox" name="sea" value="Y"
+                <div><input type="checkbox" name="sea" value="Y" id="sea"
                         <?php if ($cSea == 'Y') { ?> checked="checked" <?php } ?>>
                     <label>Meer</label>
                 </div>
@@ -157,16 +155,16 @@ if ($castle_id == 0) {
         <label class="content-grid">Anlagen</label>
         <div class="content-grid">
             <a class="column-left">
-                <div><input type="checkbox" name="disabled" value="Y"
+                <div><input type="checkbox" name="disabled" value="Y" id="disabled"
                         <?php if ($cDisabled == 'Y') { ?> checked="checked" <?php } ?> >
                     <label>Barrierefrei</label>
                 </div>
-                <div><input type="checkbox" name="parking" value="Y"
+                <div><input type="checkbox" name="parking" value="Y" id="parking"
                         <?php if ($cParking == 'Y') { ?> checked="checked" <?php } ?> >
                     <label>Parkplatz</label></div>
             </a>
             <a class="column-right">
-                <div><input type="checkbox" name="gastro" value="Y"
+                <div><input type="checkbox" name="gastro" value="Y" id="gastro"
                         <?php if ($cGastro == 'Y') { ?> checked="checked" <?php } ?>>
                     <label>Gastronomie</label>
                 </div>
@@ -181,11 +179,11 @@ if ($castle_id == 0) {
 
         <label class="content-grid">Social</label>
         <ul>
-            <li><i class="fa fa-fw fa-facebook"></i><input class="item-list" type="text" name="facebook"
+            <li><i class="fa fa-fw fa-facebook"></i><input class="item-list"  id='facebook' type="text" name="facebook"
                                                            value="<?php echo $cFacebook ?>"></li>
-            <li><i class="fa fa-fw fa-instagram"></i><input class="item-list" type="text" name="instagram"
+            <li><i class="fa fa-fw fa-instagram"></i><input class="item-list" type="text" id="instagram"name="instagram"
                                                             value="<?php echo $cInstagram ?>"></li>
-            <li><i class="fa fa-fw fa-twitter"></i><input class="item-list" type="text" name="twitter"
+            <li><i class="fa fa-fw fa-twitter"></i><input class="item-list" type="text" id="twitter" name="twitter"
                                                           value="<?php echo $cTwitter ?>"></li>
         </ul>
         <?php
@@ -197,13 +195,51 @@ if ($castle_id == 0) {
             <?php
         }
         ?>
-        <input type="submit" name="<?php echo $cTransName; ?>" value="<?php echo $cTransType; ?>">
+        <input type="submit" id="updCastle" name="updCastle" value="<?php echo $cTransType; ?>">
 
-    </form>
+    </form></div>
+    <script>
+        $("#updCastle").click(function () {
+var castleid=document.getElementById("castleid").value;
+            var cName =  document.getElementById("castlename").value;
+            var cDescription =  document.getElementById("castledesc").value;
+            var cYear =  document.getElementById("year").value;
+            var cSize =  document.getElementById("size").value;
+            var cAddress =  document.getElementById("address").value;
+            var cLatitude = document.getElementById("lat").value;
+            var cLongitude =  document.getElementById("lng").value;
+            var cCity =  document.getElementById("city").value;
+            var cZipCode =  document.getElementById("zipcode").value;
+            var cMountain = document.getElementById("mountain").value;
+            var cDesert =  document.getElementById("desert").value;
+            var cForest =  document.getElementById("forest").value;
+            var cSea =  document.getElementById("sea").value;
+            var cDisabled =  document.getElementById("disabled").value;
+            var cParking =  document.getElementById("parking").value;
+            var cGastro =  document.getElementById("gastro").value;
+            var cEmail = document.getElementById("email").value;
+            var cWebSite = document.getElementById("website").value;
+            var cFacebook =  document.getElementById("facebook").value;
+            var cInstagram =  document.getElementById("instagram").value;
+            var cTwitter =  document.getElementById("twitter").value;
 
-    <!--    <form method="post" enctype="multipart/form-data">-->
-    <!--        Select Image Files to Upload:-->
-    <!--        <input class="content-grid" type="file" name="images[]" multiple="multiple" accept="image/*">-->
-    <!--        <input type="submit" name="importImg" value="Import Images">-->
-    <!--    </form>-->
-</div>
+            if (confirm('Sind Sie sicher?')) {
+                $.ajax({
+                    url: 'admin/views/castles/castles_controller.php',
+                    type: 'POST',
+                    data: {castleid:castleid,castlename: cName, castledesc: cDescription, year: cYear, size: cSize,address: cAddress, lat: cLatitude, lng: cLongitude, email: cCity,zipcode: cZipCode, mountain: cMountain, desert: cDesert, forest: cForest,sea: cSea, disabled: cDisabled, parking: cParking, gastro: cGastro,email: cEmail, website: cWebSite, facebook: cFacebook, instagram: cInstagram,twitter:cTwitter},
+                    error: function () {
+                        alert('es ist ein Fehler aufgetreten!');
+                    },
+                    success: function (data) {
+                        alert(data);
+                    }
+                });
+            }
+
+
+
+
+
+        });
+    </script>

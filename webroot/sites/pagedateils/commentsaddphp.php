@@ -18,6 +18,7 @@ if (isset($_POST["newComment"])) {
                           (  c_text,name,time,castleid,userid
                           )
                           VALUES (?,?,?,?,?)";
+
             $werte = array(
                 $_POST["c_text"], $benutzername,
                 date("d.m.Y H:i:s"), $castleId,$userid

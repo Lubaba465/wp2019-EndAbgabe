@@ -1,8 +1,10 @@
 <?php
 session_start();
 require($_SERVER['DOCUMENT_ROOT'] . '/wp2019EndAbgabe/config.php');
+session_start();
 
 $userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 'anonym';
+$db = $DB;
 
 if (isset($_POST["newCastle"])) {
     $mountain = isset($_POST['mountain']) == 'Y' ? 'Y' : 'N';
@@ -14,8 +16,11 @@ if (isset($_POST["newCastle"])) {
     $gastro = isset($_POST['gastro']) == 'Y' ? 'Y' : 'N';
     $userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 'anonym';
     try {
-        $dns = DB_DRIVER . ':' . "../database/german_castles.db";
-        $db = new PDO($dns);
+        $db_user = "root";
+        $db_pass = "";
+        $db_name = "german_castles";
+        $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
+
         $create_date = date("Y-m-d H:i:s");
         $sql = "INSERT INTO " . TABLE_CASTLES . "(
                   userid,
@@ -80,10 +85,13 @@ if (isset($_POST["newCastle"])) {
     }
 }
 
-if (isset($_POST["updCastle"])) {
+if (isset($_POST["castlename"])) {
     try {
-        $dns = DB_DRIVER . ':' . DB_DATABASE;
-        $db = new PDO($dns);
+        $db_user = "root";
+        $db_pass = "";
+        $db_name = "german_castles";
+        $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
+
         $update_date = date("Y-m-d H:i:s");
         $mountain = isset($_POST['mountain']) == 'Y' ? 'Y' : 'N';
         $desert = isset($_POST['desert']) == 'Y' ? 'Y' : 'N';
@@ -92,7 +100,6 @@ if (isset($_POST["updCastle"])) {
         $disabled = isset($_POST['disabled']) == 'Y' ? 'Y' : 'N';
         $parking = isset($_POST['parking']) == 'Y' ? 'Y' : 'N';
         $gastro = isset($_POST['gastro']) == 'Y' ? 'Y' : 'N';
-
         $sql = "UPDATE " . TABLE_CASTLES . " SET
                 name ='" . $_POST["castlename"] . "',
                 description ='" . $_POST["castledesc"] . "',
@@ -116,12 +123,11 @@ if (isset($_POST["updCastle"])) {
                 lat ='" . $_POST["lat"] . "',
                 lng ='" . $_POST["lng"] . "',                
                 update_date ='" . $update_date . "'               
-                WHERE castleid = " . $_POST["castleid"];
-
-//        echo $sql;
+                WHERE castleid ='".$_POST["castleid"]."'";
 
         $stmt = $db->prepare($sql);
         $stmt->execute();
+
 
 //        $len = count($_FILES['images']['tmp_name']);
 //
@@ -146,6 +152,13 @@ if (isset($_POST["updCastle"])) {
                 if (move_uploaded_file($filetempname, $targetFilePath)) {
                     // Image db insert sql
                     insertImage($filetempname, $filename, $filetype, $castleid, $userid, 'N');
+                    if ($stmt->rowCount() > 0) {
+                        session_destroy();
+                        echo 'Ihr Konto wurde deaktiviert!';
+                    } else {
+                        echo 'Ihr Konto wurde nicht deaktiviert!';
+                    }
+
                 } else {
                     $errorUpload = $_FILES['images']['name'][$key] . ', ';
                 }
@@ -157,11 +170,11 @@ if (isset($_POST["updCastle"])) {
 
 //            echo '<img width="200" height="200" src="data:' . $a['mimetype'] . ';base64,' . base64_encode($a['fotodata']) . '"/>';
 //            $blobObj = null;
-            }
-        }
+            }}
+
     } catch (PDOException $e) {
-        echo 'Fehler: ' . htmlspecialchars($e->getMessage());
-    }
+    echo 'Fehler: ' . htmlspecialchars($e->getMessage());
+}
 }
 
 class castles_controller
@@ -181,28 +194,40 @@ class castles_controller
 
     function getCastlesAdmin()
     {
+        $db_user = "root";
+        $db_pass = "";
+        $db_name = "german_castles";
+
+        $conn = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
+
         try {
-            $sql = "SELECT * FROM " . TABLE_CASTLES . " WHERE 
-                userid = '" . $this->userid . "'";
-            $rs = $this->db->query($sql);
+            $query = "SELECT * FROM gc_castles WHERE userid = 'lubaba'";
+              $stmt = $conn->query($query);
+            $roww = $stmt;
         } catch (Exception $ex) {
             echo errorMessage($ex->getMessage());
         }
-        return $rs;
+
+return $roww;
     }
 
-    function getCastleInfoID($id)
-    {
+    function getCastleInfoID($id){
         try {
 //            $sql = "SELECT * FROM " . TABLE_CASTLES . "WHERE castleid = '" . $id . "'";
-            $sql = "SELECT * FROM " . TABLE_CASTLES . " WHERE 
-                castleid = '" . $id . "' LIMIT 1";
-            $rs = $this->db->prepare($sql);
-            $rs->execute();
+
+            $db_user = "root";
+            $db_pass = "";
+            $db_name = "german_castles";
+            $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
+
+            $sql = "SELECT * FROM gc_castles WHERE 
+                castleid = '" . $id . "' ";
+            $rs = $db->query($sql);
         } catch (Exception $ex) {
             echo errorMessage($ex->getMessage());
         }
         return $rs->fetch();
+
     }
 
     function getMagazinInfoID($id)
@@ -223,42 +248,66 @@ class castles_controller
     function getCastleFotosUser($castleid)
     {
         try {
+            $db_user = "root";
+            $db_pass = "";
+            $db_name = "german_castles";
+            $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
+
             $sql = "SELECT * FROM " . TABLE_CASTLE_FOTOS . " WHERE 
                 userid = '" . $this->userid . "' AND 
                 castleid = '" . $castleid . "' LIMIT 1";
-            $stmt = $this->db->prepare($sql);
+            $stmt = $db->prepare($sql);
             $stmt->execute();
             header("Content-Type: image");
 
-        } catch (Exception $ex) {
-            echo errorMessage($ex->getMessage());
-        }
-        return $stmt->fetch();//array("mimetype" => $mime, "fotodata" => $data);
-    }
-
-    function getMainFotoCastle($castleid)
-    {
-        try {
-//            include is_main = 'Y'
-            $sql = "SELECT * FROM " . TABLE_CASTLE_FOTOS . " WHERE 
-                userid = '" . $this->userid . "' AND 
-                castleid = '" . $castleid . "' ORDER BY fotoid DESC LIMIT 1";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
-            header("Content-Type: image");
         } catch (Exception $ex) {
             echo errorMessage($ex->getMessage());
         }
         return $stmt->fetch();
+                                                                                                                                                                                                     }
+
+    function getMainFotoCastle($castleid)
+    {
+        try {
+            $db_user = "root";
+            $db_pass = "";
+            $db_name = "german_castles";
+            $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
+
+//            include is_main = 'Y'
+            $sql = "SELECT * FROM  gc_castle_fotos WHERE 
+                userid = 'lubaba' AND 
+                castleid = 1 ";
+            $stmt = $db->query($sql);
+
+
+
+            header("Content-Type: image");
+
+            $ergebnis = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+
+
+
+        } catch (Exception $ex) {
+            echo errorMessage($ex->getMessage());
+        }
+        return $ergebnis;
     }
 
 //    function getFotosUser($userid)
     function getFotosUser()
     {
         try {
+            $db_user = "root";
+            $db_pass = "";
+            $db_name = "german_castles";
+            $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
+
             $sql = "SELECT * FROM " . TABLE_CASTLE_FOTOS . " WHERE 
                 userid = '" . $this->userid . "'";
-            $stmt = $this->db->prepare($sql);
+            $stmt = $db->prepare($sql);
             $stmt->execute();
             header("Content-Type: image");
 
@@ -274,8 +323,13 @@ class castles_controller
     function getCounties()
     {
         try {
+            $db_user = "root";
+            $db_pass = "";
+            $db_name = "german_castles";
+            $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
+
             $sql = "SELECT * FROM " . TABLE_COUNTIES;
-            $rs = $this->db->query($sql);
+            $rs = $db->query($sql);
         } catch (Exception $ex) {
             echo errorMessage($ex->getMessage());
         }

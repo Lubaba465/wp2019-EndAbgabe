@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/components/ratings.css">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="js/admin/ratings.js"></script>
-<script src="js/admin/castles.js"></script>
+<script src="js/admin/castls.js"></script>
 
 
 <?php

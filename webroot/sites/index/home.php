@@ -38,29 +38,23 @@
                         include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
                         $db = $DB;
 
-                        $sql = "SELECT * FROM gc_comments ";
+                        $sql = "SELECT * FROM gc_comments";
 
                         $ergebnis = $db->query($sql);
 
 
-                        foreach ($ergebnis
-
-                        as $zeile) { ?>
+                        foreach ($ergebnis as $zeile) { ?>
 
                         <h2 class="cnt-headline" style="color: #8D8D8D"> Letzte Kommentare</h2>
 
 
                         <?php
-                        $castleid = $zeile['castleid'];
-
-
-                        ?>
-                        <?php
 
                         include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
                         $db = $DB;
+                        $castleid = $zeile['castleid'];
 
-                        $sql = "SELECT * FROM  gc_castle_fotos   where castleid=$castleid limit 1";
+                        $sql = "SELECT * FROM  gc_castle_fotos   where castleid=$castleid ";
 
 
                         $ergebni = $db->query($sql);
@@ -68,8 +62,7 @@
 
                         as $zeil) { ?>
 
-                        <img class="portrait" src="img/uploads/<?php echo $zeil['file_name'] ?>"/>
-                        </br>
+
 
                         <?php }
                         echo " @" . ($zeile['name']); ?></label><label>   <?php
@@ -77,13 +70,14 @@
                         <p class="p"> <?php echo "   " . $zeile['c_text']; ?>
 
 
-                    </div>
+                        </p>
 
                 <?php }
 
                 ?>
 
 
+                    </div>
                     </br>
 
                     <?php
