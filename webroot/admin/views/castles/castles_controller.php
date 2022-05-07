@@ -3,10 +3,9 @@ session_start();
 require($_SERVER['DOCUMENT_ROOT'] . '/wp2019EndAbgabe/config.php');
 session_start();
 
-$userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 'anonym';
 $db = $DB;
 
-if (isset($_POST["castlename"])) {
+if (isset($_POST["newCastle"])) {
 
 
     $mountain = isset($_POST['mountain']) == 'Y' ? 'Y' : 'N';
@@ -24,7 +23,7 @@ if (isset($_POST["castlename"])) {
         $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
 
         $create_date = date("Y-m-d H:i:s");
-        $sql = "INSERT INTO " . TABLE_CASTLES . "(
+        $sql = "INSERT INTO gc_castles (
                   userid,
                   name,
                   description,
@@ -51,8 +50,9 @@ if (isset($_POST["castlename"])) {
                   create_date
                   )
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        echo'gizuo';
         $values = array(
-            $userid,
+            'lubaba',
             $_POST["castlename"],
             $_POST["castledesc"],
             ($_POST["year"] == "") ? 0 : $_POST["year"],
@@ -87,7 +87,7 @@ if (isset($_POST["castlename"])) {
     }
 }
 
-if (isset($_POST["fth"])) {
+if (isset($_POST["updCastle"])) {
     try {
         $db_user = "root";
         $db_pass = "";

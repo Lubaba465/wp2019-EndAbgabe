@@ -278,8 +278,7 @@ if (isset($_POST["newCastle"])) {
             <?php
         }
         ?>
-        <input type="submit"  name="newCastle"
-               id="newCastle"  value="<?php echo $cTransType; ?>">
+        <input type="submit"  id="<?php echo $cTransName; ?>" name="<?php echo $cTransName; ?>" value="<?php echo $cTransType; ?>">
 
     </form></div>
 
@@ -307,12 +306,13 @@ var castleid=document.getElementById("castleid").value;
             var cFacebook =  document.getElementById("facebook").value;
             var cInstagram =  document.getElementById("instagram").value;
             var cTwitter =  document.getElementById("twitter").value;
+            var newCastle  =  document.getElementById("newCastle").value;
 
             if (confirm('Sind Sie sicher?')) {
                 $.ajax({
                     url: 'admin/views/castles/castles_controller.php',
                     type: 'POST',
-                    data: {castleid:castleid,castlename: cName, castledesc: cDescription, year: cYear, size: cSize,address: cAddress, lat: cLatitude, lng: cLongitude, email: cCity,zipcode: cZipCode, mountain: cMountain, desert: cDesert, forest: cForest,sea: cSea, disabled: cDisabled, parking: cParking, gastro: cGastro,email: cEmail, website: cWebSite, facebook: cFacebook, instagram: cInstagram,twitter:cTwitter},
+                    data: {newCastle:newCastle,castleid:castleid,castlename: cName, castledesc: cDescription, year: cYear, size: cSize,address: cAddress, lat: cLatitude, lng: cLongitude, email: cCity,zipcode: cZipCode, mountain: cMountain, desert: cDesert, forest: cForest,sea: cSea, disabled: cDisabled, parking: cParking, gastro: cGastro,email: cEmail, website: cWebSite, facebook: cFacebook, instagram: cInstagram,twitter:cTwitter},
                     error: function () {
                         alert('es ist ein Fehler aufgetreten!');
                     },
@@ -328,3 +328,49 @@ var castleid=document.getElementById("castleid").value;
 
         });
     </script>
+<script>
+    $("#updCastle").click(function () {
+        var castleid=document.getElementById("castleid").value;
+        var cName =  document.getElementById("castlename").value;
+        var cDescription =  document.getElementById("castledesc").value;
+        var cYear =  document.getElementById("year").value;
+        var cSize =  document.getElementById("size").value;
+        var cAddress =  document.getElementById("address").value;
+        var cLatitude = document.getElementById("lat").value;
+        var cLongitude =  document.getElementById("lng").value;
+        var cCity =  document.getElementById("city").value;
+        var cZipCode =  document.getElementById("zipcode").value;
+        var cMountain = document.getElementById("mountain").value;
+        var cDesert =  document.getElementById("desert").value;
+        var cForest =  document.getElementById("forest").value;
+        var cSea =  document.getElementById("sea").value;
+        var cDisabled =  document.getElementById("disabled").value;
+        var cParking =  document.getElementById("parking").value;
+        var cGastro =  document.getElementById("gastro").value;
+        var cEmail = document.getElementById("email").value;
+        var cWebSite = document.getElementById("website").value;
+        var cFacebook =  document.getElementById("facebook").value;
+        var cInstagram =  document.getElementById("instagram").value;
+        var cTwitter =  document.getElementById("twitter").value;
+        var updCastle  =  document.getElementById("updCastle").value;
+
+        if (confirm('Sind Sie sicher?')) {
+            $.ajax({
+                url: 'admin/views/castles/castles_controller.php',
+                type: 'POST',
+                data: {updCastle:updCastle,castleid:castleid,castlename: cName, castledesc: cDescription, year: cYear, size: cSize,address: cAddress, lat: cLatitude, lng: cLongitude, email: cCity,zipcode: cZipCode, mountain: cMountain, desert: cDesert, forest: cForest,sea: cSea, disabled: cDisabled, parking: cParking, gastro: cGastro,email: cEmail, website: cWebSite, facebook: cFacebook, instagram: cInstagram,twitter:cTwitter},
+                error: function () {
+                    alert('es ist ein Fehler aufgetreten!');
+                },
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        }
+
+
+
+
+
+    });
+</script>
