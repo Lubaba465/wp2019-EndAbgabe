@@ -8,7 +8,7 @@
 <?php
 require("media_controller.php");
 $mediaController = new media_controller();
-$imgList = $mediaController->getFotosUser();
+$imgList = $mediaController->getFotosUser("carola");
 ?>
 <div id="media">
     <h1 class="content-title">Meine Medien</h1>
@@ -18,11 +18,11 @@ $imgList = $mediaController->getFotosUser();
             <div class="slideshow-container">
                 <div class="slide">
                     <?php
-                    //$imgList = getFotosUser("carola");
+                    $imgList = $mediaController->getFotosUser("carola");
 
                     foreach ($imgList as $media) {
                         ?>
-                        <img class="portrait" src="img/uploads/<?php echo $media['file_name']?>"/>
+                        <img class="portrait" src="img/uploads/<?php echo $media['file_name'] ?>"/>
                         <?php
                     }
                     header("Content-Type: image");

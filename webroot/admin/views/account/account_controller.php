@@ -75,8 +75,11 @@ function checkAccountInfo($userid, $password)
 {
     $flag = false;
     try {
-        $dns = DB_DRIVER . ':' . DB_DATABASE;
-        $db = new PDO($dns);
+        $db_user = "root";
+        $db_pass = "";
+        $db_name = "german_castles";
+
+        $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
         $sql = "SELECT * FROM " . TABLE_USERS . " WHERE 
                 userid = '" . $userid . "' LIMIT 1";
         $rs = $db->query($sql);

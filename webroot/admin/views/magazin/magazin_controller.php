@@ -6,8 +6,11 @@ $userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 'anonym';
 
 if (isset($_POST["newMagazin"])) {
     try {
-        $dns = DB_DRIVER . ':' . "../database/german_castles.db";
-        $db = new PDO($dns);
+        $db_user = "root";
+        $db_pass = "";
+        $db_name = "german_castles";
+
+        $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
         $create_date = date("Y-m-d H:i:s");
         $sql = "INSERT INTO " . TABLE_CASTLE_MAGAZIN .
             "(    castleid,
@@ -49,8 +52,11 @@ if (isset($_POST["newMagazin"])) {
 
 if (isset($_POST["updMagazin"])) {
     try {
-        $dns = DB_DRIVER . ':' . "../database/german_castles.db";
-        $db = new PDO($dns);
+        $db_user = "root";
+        $db_pass = "";
+        $db_name = "german_castles";
+
+        $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
         $update_date = date("Y-m-d H:i:s");
 
         $sql = "UPDATE " . TABLE_CASTLE_MAGAZIN . " SET
@@ -113,8 +119,13 @@ class magazin_controller
 {
     function __construct()
     {
-        $this->dns = DB_DRIVER . ':' . DB_DATABASE;
-        $this->db = new PDO($this->dns);
+
+        $db_user = "root";
+        $db_pass = "";
+        $db_name = "german_castles";
+
+        $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
+
         if(isset($_SESSION['userid'])){
             $this->userid = $_SESSION['userid'];
         }
@@ -123,9 +134,14 @@ class magazin_controller
     function getMagazinUser()
     {
         try {
+            $db_user = "root";
+            $db_pass = "";
+            $db_name = "german_castles";
+
+            $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
             $sql = "SELECT * FROM " . TABLE_CASTLE_MAGAZIN . " WHERE 
                 userid = '" . $this->userid . "'";
-            $stmt = $this->db->prepare($sql);
+            $stmt = $db->prepare($sql);
             $stmt->execute();
             header("Content-Type: image");
 

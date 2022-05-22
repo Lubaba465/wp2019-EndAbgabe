@@ -18,12 +18,17 @@ class media_controller
         }
     }
 
-    function getFotosUser()
+    function getFotosUser($user)
     {
         try {
+            $db_user = "root";
+            $db_pass = "";
+            $db_name = "german_castles";
+
+            $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
             $sql = "SELECT * FROM " . TABLE_CASTLE_FOTOS . " WHERE 
-                userid = '" . $this->userid . "'";
-            $stmt = $this->db->prepare($sql);
+                userid = '" . $user. "'";
+            $stmt = $db->prepare($sql);
             $stmt->execute();
             header("Content-Type: image");
 
