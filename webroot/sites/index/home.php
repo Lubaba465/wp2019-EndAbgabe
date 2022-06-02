@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Deutsche Schloesser | Home</title>
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/indexx.css">
 </head>
 <body>
 <div class="index-container">
     <div class="content-grid">
-        <?php include "homeimage.php"; ?>
+<!--        --><?php /*include "homeimage.php"; */?>
     </div>
     <div class=" content-grid">
         <div>

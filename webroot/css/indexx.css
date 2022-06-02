@@ -12,8 +12,8 @@
 }
 
 .content-grid {
-    display: flex;
-    text-align: center;
+display: flex;
+    padding-top: 200px;
 }
 
 .content-grid > div {
@@ -59,10 +59,7 @@
 
 @media (min-width: 769px) {
     .index-container {
-        flex-direction: row;
-        width: 80%;
-        margin: 0 auto;
-        max-width: 1150px;
+
     }
 
 }
