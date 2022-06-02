@@ -2,7 +2,7 @@ $(document).ready(function () {
     $("a.magSection").click(function () {
         var sectionId = $(this).attr("id");
         var siteId = "admin/";
-        siteId = "admin/magazinData.php?magazinid=" + sectionId;
+        siteId = "admin/views/magazin/magazin_data.php?magazinid=" + sectionId;
         $("#adminSection").load(siteId);
     });
     $("button.magSection").click(function () {
@@ -11,7 +11,7 @@ $(document).ready(function () {
         switch (sectionId) {
             case "magazinData":
             default:
-                siteId = "admin/magazinData.php?magazinid=0";
+                siteId = "admin/views/magazin/magazin_data.php?magazinid=0";
                 break;
         }
         $("#adminSection").load(siteId);

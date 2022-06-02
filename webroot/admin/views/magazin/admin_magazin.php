@@ -2,8 +2,7 @@
 <head>
     <link rel="stylesheet" href="css/admin/castles.css">
     <link rel="stylesheet" href="css/admin/side-nav.css">
-    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="js/admin/castles.js"></script>
+    <script type="text/javascript" src="js/admin/magazinn.js"></script>
 
 </head>
 <?php
@@ -19,7 +18,7 @@ $magazinController = new magazin_controller();
         <div>
             <h2 class="cnt-headline">Events</h2>
             <?php
-            $magazin = $magazinController->getMagazinUser();
+            $magazin = $magazinController->getMagazinUser("carola");
             foreach ($magazin as $row) {
                 if ($row["magazin_type"] == 'E') {
                     ?>
@@ -60,7 +59,7 @@ $magazinController = new magazin_controller();
         <div>
             <h2 class="cnt-headline">News</h2>
             <?php
-            $magazin = $magazinController->getMagazinUser();
+            $magazin = $magazinController->getMagazinUser("carola");
             foreach ($magazin as $row) {
                 if ($row["magazin_type"] == 'N') {
                     ?>

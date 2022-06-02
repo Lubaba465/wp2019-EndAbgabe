@@ -1,8 +1,14 @@
 <head>
     <link rel="stylesheet" href="css/admin/castles.css">
     <link rel="stylesheet" href="css/admin/side-nav.css">
+<?php include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
+$userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 'anonym';
 
+?>
 </head>
+
+
+
 <?php
 include("castles_controller.php");
 //require("../libs/config.php");
@@ -70,7 +76,7 @@ if ($castle_id == 0) {
 }
 ?>
 <?php
-if (isset($_POST["newCastle"])) {
+/*if (isset($_POST["newCastle"])) {
     echo "Eintrag hinzugef";
 
     $mountain = isset($_POST['mountain']) == 'Y' ? 'Y' : 'N';
@@ -152,10 +158,13 @@ if (isset($_POST["newCastle"])) {
         echo 'Fehler: ' . htmlspecialchars($e->getMessage());
     }
 }
-?>
+*/?>
+
 <h1 class="content-title">Schloss <?php echo $cTransType ?></h1>
 <div class="castle-container">
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="imageupload.php" method="post" enctype="multipart/form-data">
+       <input type="text" name="userid" value="<?php echo $userid ?>">
+
         <input class="content-grid" id="castleid" name="castleid" type="hidden" value="<?php echo $cCastleId ?>">
         <input class="content-grid" type="text" id="castlename" name="castlename" placeholder="Schloss Name..."
                value="<?php echo $cName ?>">
@@ -273,16 +282,27 @@ if (isset($_POST["newCastle"])) {
 
         if ($castle_id != 0 and $castle_id != "") {
             ?>
-            <label class="content-grid">Media</label>
-            <input class="content-grid" type="file" name="images[]" multiple="multiple" accept="image/*">
+
+
+        <label class="content-grid">Media</label>
+            <input type="file" id="image" name="image">
+            <input type="hidden" id="imagen" name="imagen" value="<?php $_FILES['image']['name'] ?>">
+
+
+
+
             <?php
         }
         ?>
+
+
+
+
         <input type="submit"  id="<?php echo $cTransName; ?>" name="<?php echo $cTransName; ?>" value="<?php echo $cTransType; ?>">
 
     </form></div>
 
-    <script>
+<script>
         $("#newCastle").click(function () {
 var castleid=document.getElementById("castleid").value;
             var cName =  document.getElementById("castlename").value;
@@ -353,12 +373,13 @@ var castleid=document.getElementById("castleid").value;
         var cInstagram =  document.getElementById("instagram").value;
         var cTwitter =  document.getElementById("twitter").value;
         var updCastle  =  document.getElementById("updCastle").value;
-
+var image= document.getElementById("image").value;
+var imagen=document.getElementById("imagen").value;
         if (confirm('Sind Sie sicher?')) {
             $.ajax({
                 url: 'admin/views/castles/castles_controller.php',
                 type: 'POST',
-                data: {updCastle:updCastle,castleid:castleid,castlename: cName, castledesc: cDescription, year: cYear, size: cSize,address: cAddress, lat: cLatitude, lng: cLongitude, email: cCity,zipcode: cZipCode, mountain: cMountain, desert: cDesert, forest: cForest,sea: cSea, disabled: cDisabled, parking: cParking, gastro: cGastro,email: cEmail, website: cWebSite, facebook: cFacebook, instagram: cInstagram,twitter:cTwitter},
+                data: {imagen:imagen,image:image,updCastle:updCastle,castleid:castleid,castlename: cName, castledesc: cDescription, year: cYear, size: cSize,address: cAddress, lat: cLatitude, lng: cLongitude, email: cCity,zipcode: cZipCode, mountain: cMountain, desert: cDesert, forest: cForest,sea: cSea, disabled: cDisabled, parking: cParking, gastro: cGastro,email: cEmail, website: cWebSite, facebook: cFacebook, instagram: cInstagram,twitter:cTwitter},
                 error: function () {
                     alert('es ist ein Fehler aufgetreten!');
                 },

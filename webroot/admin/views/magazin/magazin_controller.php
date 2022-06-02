@@ -27,7 +27,8 @@ if (isset($_POST["newMagazin"])) {
                   )
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $values = array(
-            $_POST["castle"],
+            $_POST["castle"]
+          ,
             $userid,
             $_POST["magazinType"],
             $_POST["magazinname"],
@@ -42,7 +43,6 @@ if (isset($_POST["newMagazin"])) {
 
         $command = $db->prepare($sql);
         $command->execute($values);
-        header("Location: ../admin.php");
 //        echo "Eintrag hinzugef&uuml;gt.";
 
     } catch (PDOException $e) {
@@ -60,7 +60,7 @@ if (isset($_POST["updMagazin"])) {
         $update_date = date("Y-m-d H:i:s");
 
         $sql = "UPDATE " . TABLE_CASTLE_MAGAZIN . " SET
-                magazin_type ='" . $_POST["magazintype"] . "',
+                magazin_type ='" . $_POST["magazinType"] . "',
                 magazin_name ='" . $_POST["magazinname"] . "',
                 magazin_desc ='" . $_POST["magazindesc"] . "',
                 magazin_date ='" . $_POST["magazindate"] . "',
@@ -70,53 +70,26 @@ if (isset($_POST["updMagazin"])) {
                 update_date ='" . $update_date . "'               
                 WHERE magazinid = " . $_POST["magazinid"];
 
-//        echo $sql;
+        echo $sql;
 
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
+        $stmt = $db->query($sql);
+        if ($stmt->rowCount() > 0) {
+            session_destroy();
+            echo 'Ihre Daten wurden aktualisiert!';
+        } else {
+            echo 'Ihr Daten wurden nicht aktualisiert!';
 
-//        $len = count($_FILES['images']['tmp_name']);
-//
-//        for($i = 0; $i < $len; $i++) {
-//            $fileSize = $_FILES['attachments']['size'][$i];
-        // change size to whatever key you need - error, tmp_name etc
-//        }
-
-        foreach ($_FILES['images']['tmp_name'] as $key => $val) {
-//            $key = $_FILES['images']['tmp_name'][$i];
-            $castleid = $_POST["castleid"];
-            $userid = "carola";
-            $targetDir = "../img/uploads/";
-
-            $filename = $_FILES['images']['name'][$key];
-            $filetype = $_FILES['images']['type'][$key];
-            $filetempname = $_FILES['images']['tmp_name'][$key];
-
-            $targetFilePath = $targetDir . $filename;
-
-//            $is_main = ($i == $len - 1) ? 'Y' : 'N';
-
-            if (move_uploaded_file($filetempname, $targetFilePath)) {
-                // Image db insert sql
-                insertImage($filetempname, $filename, $filetype, $castleid, $userid, 'N');
-            } else {
-                $errorUpload .= $_FILES['files']['name'][$key] . ', ';
-            }
-//            header("Location: ../admin.php");
-//            header("Content-Type: image");
-//            $blobObj = new BobManager();
-//            $blobObj->insertBlob($filetempname, $filename, $filetype, $castleid, $userid);
-
-//            echo '<img width="200" height="200" src="data:' . $a['mimetype'] . ';base64,' . base64_encode($a['fotodata']) . '"/>';
-//            $blobObj = null;
         }
     } catch (PDOException $e) {
         echo 'Fehler: ' . htmlspecialchars($e->getMessage());
     }
 }
 
+
 class magazin_controller
 {
+
+
     function __construct()
     {
 
@@ -130,8 +103,42 @@ class magazin_controller
             $this->userid = $_SESSION['userid'];
         }
     }
+    function getCounties()
+    {
+        try {
+            $db_user = "root";
+            $db_pass = "";
+            $db_name = "german_castles";
+            $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
 
-    function getMagazinUser()
+            $sql = "SELECT * FROM " . TABLE_COUNTIES;
+            $rs = $db->query($sql);
+        } catch (Exception $ex) {
+            echo errorMessage($ex->getMessage());
+        }
+        return $rs;
+    }
+
+    function getMagazinInfoID($id)
+    {
+        try {
+
+            $db_user = "root";
+            $db_pass = "";
+            $db_name = "german_castles";
+
+            $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
+//            $sql = "SELECT * FROM " . TABLE_CASTLES . "WHERE castleid = '" . $id . "'";
+            $sql = "SELECT * FROM " . TABLE_CASTLE_MAGAZIN . " WHERE 
+                magazinid = '" . $id . "' LIMIT 1";
+            $rs = $db->prepare($sql);
+            $rs->execute();
+        } catch (Exception $ex) {
+            echo errorMessage($ex->getMessage());
+        }
+        return $rs->fetch();
+    }
+    function getMagazinUser($user)
     {
         try {
             $db_user = "root";
@@ -140,7 +147,7 @@ class magazin_controller
 
             $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
             $sql = "SELECT * FROM " . TABLE_CASTLE_MAGAZIN . " WHERE 
-                userid = '" . $this->userid . "'";
+                userid = '" . $user . "'";
             $stmt = $db->prepare($sql);
             $stmt->execute();
             header("Content-Type: image");

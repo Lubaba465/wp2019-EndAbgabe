@@ -1,6 +1,5 @@
 <?php
-session_start();
-require($_SERVER['DOCUMENT_ROOT'] . '/wp2019EndAbgabe/config.php');
+include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
 session_start();
 
 $db = $DB;
@@ -52,7 +51,7 @@ if (isset($_POST["newCastle"])) {
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         echo'gizuo';
         $values = array(
-            'lubaba',
+            $_SESSION['userid'],
             $_POST["castlename"],
             $_POST["castledesc"],
             ($_POST["year"] == "") ? 0 : $_POST["year"],
@@ -77,17 +76,53 @@ if (isset($_POST["newCastle"])) {
             $_POST["lng"],
             $create_date
         );
-        $command = $db->prepare($sql);
-        $command->execute($values);
-        header("Location: ../admin.php");
-//        echo "Eintrag hinzugef&uuml;gt.";
 
+//        $len = count($_FILES['images']['tmp_name']);
+//
+//        for($i = 0; $i < $len; $i++) {
+//            $fileSize = $_FILES['attachments']['size'][$i];
+        // change size to whatever key you need - error, tmp_name etc
+//        }
+        if (isset($_FILES['images'])) {
+            foreach ($_FILES['images']['tmp_name'] as $key => $val) {
+//            $key = $_FILES['images']['tmp_name'][$i];
+                $castleid = $_POST["castleid"];
+                $targetDir = "../img/uploads/";
+
+                $filename = $_FILES['images']['name'][$key];
+                $filetype = $_FILES['images']['type'][$key];
+                $filetempname = $_FILES['images']['tmp_name'][$key];
+
+                $targetFilePath = $targetDir . $filename;
+                echo "sql";
+//            $is_main = ($i == $len - 1) ? 'Y' : 'N';
+
+                if (move_uploaded_file($filetempname, "/Applications/XAMPP/xamppfiles/temp/testupload/".$_FILES['images']['name'])) {
+                    // Image db insert sql
+                    $insert = $db->query("INSERT into gc_castle_fotos (castleid	,userid,file_name,fotodate ) VALUES ($castleid, $userid,$filename,$filetempname)");
+
+
+                    $command = $db->prepare($sql);
+                    $command->execute($values);
+
+
+
+                } else {
+                    $errorUpload = $_FILES['images']['name'][$key] . ', ';
+                }
+                header("Location: ../admin.php");
+
+//        echo "Eintrag hinzugef&uuml;gt.";
+            }}
     } catch (PDOException $e) {
         echo 'Fehler: ' . htmlspecialchars($e->getMessage());
     }
 }
 
 if (isset($_POST["updCastle"])) {
+
+
+
     try {
         $db_user = "root";
         $db_pass = "";
@@ -130,54 +165,16 @@ if (isset($_POST["updCastle"])) {
         $stmt = $db->prepare($sql);
         $stmt->execute();
 
+// Include the database configuration file
 
-//        $len = count($_FILES['images']['tmp_name']);
-//
-//        for($i = 0; $i < $len; $i++) {
-//            $fileSize = $_FILES['attachments']['size'][$i];
-        // change size to whatever key you need - error, tmp_name etc
-//        }
-        if (isset($_FILES['images'])) {
-            foreach ($_FILES['images']['tmp_name'] as $key => $val) {
-//            $key = $_FILES['images']['tmp_name'][$i];
-                $castleid = $_POST["castleid"];
-                $targetDir = "../img/uploads/";
 
-                $filename = $_FILES['images']['name'][$key];
-                $filetype = $_FILES['images']['type'][$key];
-                $filetempname = $_FILES['images']['tmp_name'][$key];
 
-                $targetFilePath = $targetDir . $filename;
-
-//            $is_main = ($i == $len - 1) ? 'Y' : 'N';
-
-                if (move_uploaded_file($filetempname, $targetFilePath)) {
-                    // Image db insert sql
-                    insertImage($filetempname, $filename, $filetype, $castleid, $userid, 'N');
-                    if ($stmt->rowCount() > 0) {
-                        session_destroy();
-                        echo 'Ihr Konto wurde deaktiviert!';
-                    } else {
-                        echo 'Ihr Konto wurde nicht deaktiviert!';
-                    }
-
-                } else {
-                    $errorUpload = $_FILES['images']['name'][$key] . ', ';
-                }
-                header("Location: ../admin.php");
-
-//            header("Content-Type: image");
-//            $blobObj = new BobManager();
-//            $blobObj->insertBlob($filetempname, $filename, $filetype, $castleid, $userid);
-
-//            echo '<img width="200" height="200" src="data:' . $a['mimetype'] . ';base64,' . base64_encode($a['fotodata']) . '"/>';
-//            $blobObj = null;
-            }}
 
     } catch (PDOException $e) {
     echo 'Fehler: ' . htmlspecialchars($e->getMessage());
 }
 }
+
 
 class castles_controller
 {
@@ -194,16 +191,17 @@ class castles_controller
         }
     }
 
-    function getCastlesAdmin()
+
+
+    function getCastlesAdmin($useri)
     {
         $db_user = "root";
         $db_pass = "";
         $db_name = "german_castles";
 
-        $conn = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
-
+    $conn = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
         try {
-            $query = "SELECT * FROM gc_castles WHERE userid = 'lubaba'";
+            $query = "SELECT * FROM gc_castles WHERE userid ='$useri'";
               $stmt = $conn->query($query);
             $roww = $stmt;
         } catch (Exception $ex) {
@@ -268,39 +266,28 @@ return $roww;
         return $stmt->fetch();
                                                                                                                                                                                                      }
 
-    function getMainFotoCastle($castleid)
+    function getMainFotoCastle($user)
     {
         try {
             $db_user = "root";
             $db_pass = "";
             $db_name = "german_castles";
+
             $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
-
-//            include is_main = 'Y'
-            $sql = "SELECT * FROM  gc_castle_fotos WHERE 
-                userid = 'lubaba' AND 
-                castleid = 1 ";
-            $stmt = $db->query($sql);
-
-
-
+            $sql = "SELECT * FROM " . TABLE_CASTLE_FOTOS . " WHERE 
+                castleid = '" . $user. "'";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
             header("Content-Type: image");
-
-            $ergebnis = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
-
-
 
         } catch (Exception $ex) {
             echo errorMessage($ex->getMessage());
         }
-        return $ergebnis;
+        return $stmt;//array("mimetype" => $mime, "fotodata" => $data);
     }
 
 //    function getFotosUser($userid)
-    function getFotosUser()
-    {
+    function getFotosUser(){
         try {
             $db_user = "root";
             $db_pass = "";

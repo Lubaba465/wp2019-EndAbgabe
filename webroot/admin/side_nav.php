@@ -13,7 +13,7 @@
         <li><a class="navlinks admSection" id="myCastles"><i class="fa fa-fw fa-home"></i> Schlösser</a></li>
         <li><a class="navlinks admSection" id="myMedia"><i class="fa fa-fw fa-photo"></i> Media</a></li>
         <li><a class="navlinks admSection" id="myMagazin"><i class="fa fa-fw fa-newspaper-o"></i> Magazin</a></li>
-        <li><a class="navlinks admSection" id="myComments"><i class="fa fa-fw fa-comments"></i> Kommentare</a></li>
+     <!--   <li><a class="navlinks admSection" id="myComments"><i class="fa fa-fw fa-comments"></i> Kommentare</a></li>
         <li><a class="navlinks admSection" id="myRatings"><i class="fa fa-fw fa-star-half-o"></i> Bewertungen</a></li>
-    </ul>
+    --></ul>
 </div>

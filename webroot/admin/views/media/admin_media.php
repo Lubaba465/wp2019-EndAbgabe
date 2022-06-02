@@ -30,13 +30,12 @@ $imgList = $mediaController->getFotosUser("carola");
                 </div>
             </div>
         </div>
+
     </div>
 
-<!--    <div class="content-grid">-->
-<!--        <div>-->
-<!--            <h2 class="cnt-headline">Videos</h2>-->
-<!--            Videos-->
-<!--        </div>-->
-<!--    </div>-->
+
+
+
+
 
 </div>

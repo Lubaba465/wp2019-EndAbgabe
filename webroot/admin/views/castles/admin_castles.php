@@ -9,9 +9,13 @@
 require("castles_controller.php");
 require($_SERVER['DOCUMENT_ROOT'] . '/wp2019EndAbgabe/config.php');
 $castlesController = new castles_controller();
-
-$castlesList = $castlesController->getCastlesAdmin();
+$userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 'anonym';
+$castlesList = $castlesController->getCastlesAdmin($userid);
 ?>
+
+
+
+
 <div id="castles">
     <h1 class="content-title">Meine Schlösser</h1>
     <?php

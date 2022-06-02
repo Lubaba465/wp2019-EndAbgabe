@@ -25,13 +25,19 @@
             </div>
         </h2>
         <div class="content-grid">
-            <?php
-            $image = $castlesController->getMainFotoCastle($row['castleid']);
-            ?>
-            <img class="portrait" src="img/uploads/<?php echo $image['file_name'] ?>"/>
-            <?php
-            header("Content-Type: image");
-            ?>
+            <div class="slide">
+                <?php
+                $imgList = $castlesController->getMainFotoCastle($row["castleid"]);
+                echo htmlspecialchars($row["castleid"]) ;
+                foreach ($imgList as $media) {
+                    ?>
+                    <img class="portrait" src="img/uploads/<?php echo $media['file_name'] ?>"/>
+                    <?php
+                }
+                header("Content-Type: image");
+                ?>
+            </div>
+
         </div>
         <div>
             <?php echo htmlspecialchars($row["description"]) ?>
