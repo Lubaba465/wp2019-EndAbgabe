@@ -1,5 +1,4 @@
-<?php
-
+<div><?php
 
 $db = $DB;
 
@@ -12,4 +11,4 @@ $stmt->bindValue(":castleId", $castleId);
 $errorcode = $stmt->execute();
 $ergebnis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-?>
+?></div>

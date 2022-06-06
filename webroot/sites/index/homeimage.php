@@ -1,5 +1,4 @@
 <div>
-    <h2 class="cnt-headline">Alle Castles</h2>
     <ul>
 
         <?php
@@ -12,9 +11,8 @@
 
 
         ?>
-        <li><img class="portrait" name="slide" width="1000" height="700">
+      <img class="slide" name="slide" >
 
-        </li>
 
     </ul>
 </div>

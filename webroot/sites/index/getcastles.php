@@ -1,3 +1,4 @@
+<h2 class="cnt-headline" style="color: #8D8D8D">Schloss</h2>
 <?php
 
 
@@ -15,8 +16,8 @@ $ergebnis = $db->query($sql);
 
 
 foreach ($ergebnis as $zeile) { ?>
-
-    <h2 class="cnt-headline" style="color: #8D8D8D">Schloss</h2>
+<div class="castle-container">
+<div class="castledesc">
 
     <?php
     $castleid = $zeile['castleid'];
@@ -25,7 +26,9 @@ foreach ($ergebnis as $zeile) { ?>
         urlencode($zeile['name']),
         htmlspecialchars($zeile['country']));
     ?>
+    <a class="black" href="../webroot/dateils.php?id=<?php echo $zeile["castleid"]; ?> ">mehr informationen finden sie hier</a>
 
+</div>
 
     <?php
 
@@ -40,13 +43,12 @@ foreach ($ergebnis as $zeile) { ?>
     $ergebnis = $db->query($sql);
     foreach ($ergebnis as $zeile) { ?>
 
-        <img class="portrait" src="img/uploads/<?php echo $zeile['file_name'] ?>"/>
-    <?php } ?>
-    <a class="black" href="../webroot/dateils.php?id=<?php echo
-    ($zeile["castleid"]); ?> ">mehr informationen finden sie hier</a>
+        <img class="castleimage" src="img/uploads/<?php echo $zeile['file_name'] ?>"/>
+
+    <?php } ?></div>
 
 
-    </div>
+
 <?php }
 
 ?>

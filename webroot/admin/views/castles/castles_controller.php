@@ -266,7 +266,7 @@ return $roww;
         return $stmt->fetch();
                                                                                                                                                                                                      }
 
-    function getMainFotoCastle($user)
+    function getMainFotoCastle($castleid)
     {
         try {
             $db_user = "root";
@@ -275,7 +275,7 @@ return $roww;
 
             $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
             $sql = "SELECT * FROM " . TABLE_CASTLE_FOTOS . " WHERE 
-                castleid = '" . $user. "'";
+                castleid = '" . $castleid. "'";
             $stmt = $db->prepare($sql);
             $stmt->execute();
             header("Content-Type: image");

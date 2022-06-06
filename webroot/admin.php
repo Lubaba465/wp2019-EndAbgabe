@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="icon" href="img/logoSimple_trans.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/admin/admin.css">
+    <link rel="stylesheet" href="css/admin/admins.css">
 
 </head>
 

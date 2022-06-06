@@ -3,7 +3,7 @@
 <head>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/map.css">
+    <link rel="stylesheet" href="css/maps.css">
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
 
 

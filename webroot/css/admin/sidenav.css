@@ -4,8 +4,9 @@
 }
 
 .side-nav {
+
     width: 220px;
-    background: var(--main-bg-color_dark);
+    background: #212830;
     border-radius: 5px;
 }
 
@@ -17,7 +18,7 @@
 .side-nav ul span {
     display: block;
     padding: 15px;
-    color: rgba(255,255,255,.5);
+    color: orange;
     text-transform: uppercase;
     /*border-bottom: 1px solid var(--main-bg-color_dark);*/
 }

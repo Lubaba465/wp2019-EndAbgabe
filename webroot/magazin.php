@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
 
-    <link rel="stylesheet" href="css/indexx.css">
+    <link rel="stylesheet" href="css/indexl.css">
     <script src="js/admin/castls.js"></script>
 </head>
 <body>

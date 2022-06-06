@@ -1,6 +1,6 @@
 <head>
     <title>Deutsche Schloesser | Admin</title>
-    <link rel="stylesheet" href="css/admin/side-nav.css">
+    <link rel="stylesheet" href="css/admin/sidenav.css">
     <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="js/admin/sidenav.js"></script>
 </head>

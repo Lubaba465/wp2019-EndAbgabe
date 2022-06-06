@@ -14,13 +14,13 @@
     ?>
 
 
-    <div class="content-grid">
-        <div>
+
+
             <h2 class="cnt-headline"><?php echo($data['name']); ?></h2>
 
 
 
-            <div class="slideshow-container">
+            <div class="slide">
                 <?php
                 include "mediaSlideshow.php";
                 ?> <?php
@@ -31,7 +31,7 @@
                     ?>
                     <div class="mySlides fade ">
                         <div class="numbertext"><?php echo $j; ?>/<?php echo sizeof($arr); ?></div>
-                        <img class="portrait" src="img/uploads/<?php echo $media['file_name'] ?>"">
+                        <img  src="img/uploads/<?php echo $media['file_name'] ?>"">
                     </div>
                     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                     <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -50,21 +50,20 @@
 
             </div>
 
-            <div>
-                <b> Bundesland:</b>
-                <?= $data['county_name']; ?>
-                <b> Gebaut in :</b>
-                <?= $data["construction_year"]; ?>
-                <b>Castle Size:</b>
-                <?= $data["castle_size"]; ?></br>
-                <article>
-                    <?= $data["description"]; ?></p>
-                </article>
+            <div class="content-grid"><div>
+          <ul>    <li>   <b> Bundesland:</b>
+             <?= $data['county_name']; ?></li>
+              <li>  <b> Gebaut in :</b>
+                  <?= $data["construction_year"]; ?></li>
+              <li>   <b>Castle Size:</b>
+                  <?= $data["castle_size"]; ?></li><li>
+              <article>
+                  <?= $data["description"]; ?></p></article></li>
+                </ul>
 
-                <?php include "commentsphp.php";
+    <?php include "commentsphp.php"; ?>
 
-                ?>
-                <?php if (isteingeloggt()) { ?>
+    <?php if (isteingeloggt()) { ?>
                     <h2>Kommentare</h2>
 
                     <?php
@@ -83,8 +82,7 @@
                     ?>
 
 
-                <?php } ?>
-            </div>
+    <?php } ?>
 
             <?php include 'templates/components/rating.php'; ?>
 
@@ -99,13 +97,12 @@ width: 290px" id="castledesc" name="c_text" placeholder="Kommentare schreiben...
                     </br>
                     <input type="submit" class="button" name="newComment" value="Kommentare senden">
                 </form>
-            <?php } ?>
+            <?php } ?></div></div>
         </div>
 
 
 
-    </div>
-</div>
+
 
 
 

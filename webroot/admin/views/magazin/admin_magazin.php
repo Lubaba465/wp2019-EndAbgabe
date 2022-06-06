@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="css/admin/castles.css">
-    <link rel="stylesheet" href="css/admin/side-nav.css">
+    <link rel="stylesheet" href="css/admin/sidenav.css">
     <script type="text/javascript" src="js/admin/magazinn.js"></script>
 
 </head>

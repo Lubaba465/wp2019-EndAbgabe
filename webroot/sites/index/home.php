@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Deutsche Schloesser | Home</title>
-    <link rel="stylesheet" href="css/indexx.css">
+    <link rel="stylesheet" href="css/indexl.css">
 </head>
 <body>
 <div class="index-container">
-    <div class="content-grid">
-<!--        --><?php /*include "homeimage.php"; */?>
+    <div class="slide">
+<?php include "homeimage.php"; ?>
     </div>
     <div class=" content-grid">
         <div>
-            <h2 class="cnt-headline">Letzte Einträge</h2>
-            <div>
+<!--            <h2 class="cnt-headline">Letzte Einträge</h2>
+-->            <div>
 
 
                 <?php
@@ -22,14 +22,8 @@
                 include "getcastles.php";
 
                 ?>
-                <div>
-                    </br>
 
-                    <?php
-                    include "getNews.php";
-                    ?>
-                    <div>
-                        </br>
+                <h2 class="cnt-headline" style="color: #8D8D8D"> Letzte Kommentare</h2>
 
 
                         <?php
@@ -38,14 +32,13 @@
                         include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
                         $db = $DB;
 
-                        $sql = "SELECT * FROM gc_comments";
+                        $sql = "SELECT * FROM gc_comments limit 1";
 
                         $ergebnis = $db->query($sql);
 
 
                         foreach ($ergebnis as $zeile) { ?>
-
-                        <h2 class="cnt-headline" style="color: #8D8D8D"> Letzte Kommentare</h2>
+                <div class="castle-container">
 
 
                         <?php
@@ -53,37 +46,45 @@
                         include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
                         $db = $DB;
                         $castleid = $zeile['castleid'];
-
-                        $sql = "SELECT * FROM  gc_castle_fotos   where castleid=$castleid ";
-
-
-                        $ergebni = $db->query($sql);
-                        foreach ($ergebni
-
-                        as $zeil) { ?>
+                            $sql = "SELECT * FROM  gc_castle_fotos   where castleid=$castleid limit 1";
 
 
+                            $ergebnis = $db->query($sql);
+                            foreach ($ergebnis as $zeil) { ?>
 
-                        <?php }
+                                <img class="castleimage" src="img/uploads/<?php echo $zeil['file_name'] ?>"/>
+
+                            <?php }?><div class="castledesc">
+                        <?php
                         echo " @" . ($zeile['name']); ?></label><label>   <?php
                             echo "- " . ($zeile['time']); ?></label>
                         <p class="p"> <?php echo "   " . $zeile['c_text']; ?>
+<br>
+                            <a class="black" href="../webroot/dateils.php?id=<?php echo $zeile["castleid"]; ?> ">mehr informationen finden sie hier</a>
 
-
-                        </p>
-
+                        </p></div>
+                </div>
                 <?php }
 
                 ?>
 
 
-                    </div>
+                <div>
                     </br>
 
+                    <?php
+                    include "getNews.php";
+                    ?>
                     <?php
                     include "getMagazin.php";
 
                     ?>
+                    <div>
+                        </br>
+                    </div>
+
+
+
 
 
                 </div>
@@ -92,6 +93,6 @@
             include "image.php";
             ?>
 
-        </div>
+        </div></div></div>
 </body>
 </html>

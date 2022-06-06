@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/admin/castles.css">
-    <link rel="stylesheet" href="css/admin/side-nav.css">
+    <link rel="stylesheet" href="css/admin/sidenav.css">
     <script type="text/javascript" src="js/admin/castls.js"></script>
 </head>
 <?php

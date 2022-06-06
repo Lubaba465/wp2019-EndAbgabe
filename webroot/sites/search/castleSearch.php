@@ -1,4 +1,4 @@
-<div class="index-container">
+<div class="castlesearch-container">
     <?php
     if (isset($_GET['search'])) {
     include "sites/search/search.php"; ?>
@@ -6,7 +6,7 @@
         foreach ($ergebnis as $zeile) {
             $castleid = $zeile['castleid']; ?>
             <div>
-                <div class="content-grid">
+                <div class="contentcastlegrid">
                     <div>
 
                         <h2 class="cnt-headline"><?php echo($zeile['name']); ?></h2>
@@ -38,7 +38,7 @@
                 foreach ($ergebnis as $zeile) {
                     $castleid = $zeile['castleid']; ?>
                     <div>
-                        <div class="content-grid">
+                        <div class="contentcastlegrid">
                             <div>
 
 
@@ -79,7 +79,7 @@
                      as $zeile) {
                 $castleid = $zeile['castleid']; ?>
                 <div>
-                    <div class="content-grid">
+                    <div class="contentcastlegrid">
                         <div>
                             <h2 class="cnt-headline"><?php echo($zeile['name']); ?></h2>
                             <ul>

@@ -2,6 +2,7 @@
     /*padding-top: .5em;*/
     /*padding-bottom: .5em;*/
     border: 1px solid #a2a2a2;
+    padding-top: 75px;
     background-color: #f4f4f4;
     -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
@@ -94,7 +95,8 @@
     line-height: 76px;
     font-size: 24px;
     font-weight: 400;
-    background: #ddd;
+    background: #212830;
+    color: white;
     border-radius: 5px;
 }
 
@@ -105,14 +107,12 @@
 
 @media (min-width: 769px) {
     .top-nav a {
-        /*display: flex;*/
-        /*align-items: flex-end;*/
+
     }
     .admin-container {
         flex-direction: row;
-        width: 80%;
+        width: 100%;
         margin: 0 auto;
-        max-width: 1150px;
     }
 }
 

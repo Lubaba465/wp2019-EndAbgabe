@@ -10,19 +10,21 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/components/headerr.css">
-    <link rel="stylesheet" href="css/components/footer.css">
+    <link rel="stylesheet" href="css/components/headera.css">
+    <link rel="stylesheet" href="css/components/footerr.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
-
-    <script src="js/header.js"></script>
+    <script src="js/headere.js"></script>
     <?php
     require_once("usermodul.php");
 
     ?>
 </head>
-<header class="header-container">
+<header id ='header-container' class="header-container">
     <div class="top-nav" id="topNav">
-        <a class="logo" href="index.php"><img src="img/logo_trans.png" alt="Logo"></a>
+        <a class="logo" href="index.php"><img src="img/logotrans.png" alt="Logo"></a>
         <div class="dropdown">
             <button class="dropbtn"><a href="">Schlossfinder
                     <i class="fa fa-caret-down"></i></a>
@@ -51,6 +53,20 @@
 
 
         </form>
+            <script>
+
+                var navbar = document.getElementById('header-container');
+
+                window.onscroll = function() {
+                    // pageYOffset or scrollY
+                    if (window.pageYOffset > 0) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                }
+
+            </script>
 
             <script>
                 $( function() {

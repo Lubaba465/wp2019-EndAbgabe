@@ -1,6 +1,6 @@
 <head>
     <link rel="stylesheet" href="css/admin/castles.css">
-    <link rel="stylesheet" href="css/admin/side-nav.css">
+    <link rel="stylesheet" href="css/admin/sidenav.css">
 <?php include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
 $userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 'anonym';
 
