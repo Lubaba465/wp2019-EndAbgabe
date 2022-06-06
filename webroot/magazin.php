@@ -12,7 +12,8 @@
 include "templates/header.php";
 ?>
 
-<div class="index-container">
+<div class="castlesearch-container">
+
     <?php include "sites/magazin/magazinphp.php"; ?>
 </div>
 

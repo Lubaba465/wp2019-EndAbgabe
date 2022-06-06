@@ -18,13 +18,12 @@ as $zeile) {
 
 ?>
 <div>
-    <div class="content-grid">
-        <div>
+    <div class="contentcastlegrid">        <div>
             <h2 class="cnt-headline"><?php echo($zeile['magazin_name']); ?></h2>
 
 
             <h1>Datum:<? echo $zeile['magazin_date']; ?></h1>
-            <h2 class="cnt-headline"><?php echo($zeile['magazin_desc']); ?></h2>
+            <h2  style="color: black" class="cnt-headline"><?php echo($zeile['magazin_desc']); ?></h2>
 
         </div>
 

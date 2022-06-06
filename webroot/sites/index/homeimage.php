@@ -1,5 +1,3 @@
-<div>
-    <ul>
 
         <?php
 
@@ -14,5 +12,4 @@
       <img class="slide" name="slide" >
 
 
-    </ul>
-</div>
+
