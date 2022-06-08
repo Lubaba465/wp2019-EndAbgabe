@@ -13,8 +13,9 @@ include "templates/header.php";
 include "sites/index/home.php"; ?>
 <center><?php include ("map/mapindex.php"); ?></center><?php
 
-include "templates/footer.php";
 ?>
 
 </body>
+<?php include "templates/footer.php";
+?>
 </html>

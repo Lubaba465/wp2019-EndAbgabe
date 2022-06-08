@@ -22,9 +22,7 @@ position: absolute;
     transition: all 1s;
 
 }
-.position{
-    right: 560px;
-}
+
 .castleimg.activee {
     transform: scale(1);
     width: 0;
@@ -33,7 +31,7 @@ position: absolute;
 
 .hd{
 
-    font-size: 75px;
+    font-size: 65px;
     line-height: 100px;
     color: white;
     font-family: fantasy;
@@ -44,10 +42,10 @@ padding-left: 50px!important;
 
     color: grey;
    padding-top: 100px;
-    width: 45%;
+    width: 40%;
     text-align: center;
     justify-content: center;
-    margin-right: 100px;
+    margin-right: 100px!important;
 
 }
 .castledesc a{
@@ -63,17 +61,24 @@ display: flex;
 .castleimage{
     width: 600px;
     height: 400px;
-    float: right;
-margin-right:200px ;
+position:absolute;
+    z-index: -1;
+
 
 
 }
-
+.castleimagecomment{
+    width: 600px;
+    height: 400px;
+    float: right;
+    margin-right:200px ;
+}
 .slide{
     position: absolute;
     margin-top: 150px!important;
-margin-left: 15% !important;
-    width: 70%;
+margin-left: 10% !important;
+    margin-right: 10% !important;
+    width: 80%;
     background-size: cover;
 
 
@@ -207,10 +212,47 @@ width: 90%;
         justify-content: space-between;
     }
 
+    .castle-container{
+        flex-wrap: wrap;
+        height: 1000px;
+        padding-bottom: 30px;
+        padding-left:0 !important ;
+        width: 100% !important;
+    }
+  .castleimagecomment{
+        width: 100%;
+
+        padding: 0 !important;
+    }
+    .position .castleimg{
+        left:5px;
+        top:400px;
+
+    }
+    .castledesc{
+        text-align: center;
+        justify-content: center;
+        padding-left: 5px!important;
+        margin-right: 0!important;
+        width: 100%;
+
+    }
+    .position .castleimage{
+        top:400px;
+        left: 5px;
+        width: 70%;
+    }
+    .hd{
+        font-size: 20px;
+        background: #be1b4f;
+        line-height: 0px;
+
+    }
+
 
 }
 
-@media (max-width: 1000px) {
+@media only screen and (min-width: 600px) and (max-width: 1250px)  {
     .index-container {
         flex-direction: row;
         justify-content: space-between;
@@ -221,9 +263,9 @@ width: 90%;
         flex-wrap: wrap;
         height: 1000px;
         padding-bottom: 30px;
-       padding-left:5% ;
-
-        padding-right: 5%;
+       padding-left:0px !important ;
+        width: 100%;
+        padding-right: 5% !important;
     }
     .castledesc{
         text-align: center;
@@ -233,19 +275,42 @@ width: 90%;
         width: 100%;
 
     }
-    .castle-container img{
-        padding: 0px!important;
-        width: 100%;
+    .castleimage,.castleimagecomment{
+width: 100%;
+
+        padding: 0 10% 0 10%!important;
     }
+    .castleimg{
+left:9% ;
+             width: 80%;
+
+         }
+
     .contentcastlegrid{
         padding-right:10% ;
         padding-left: 0px;
     }
+    .castleimage{
+top:400px;
+        right: 25px;
+    }
+
+.position .castleimg{
+    left:7% ;
+
+    top:400px
+}
     .contentcastlegrid .portrait{
 
         width: 80%;
         padding-right:10% ;
         padding-left: 5%;
         height: 500px;
+    }
+    .hd{
+        font-size: 30px;
+        background: #1b9fbe;
+        line-height: 0px;
+
     }
 }

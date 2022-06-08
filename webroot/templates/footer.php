@@ -3,11 +3,12 @@
 //include("../libs/constants.php");?>
 <?php
 
-
-require_once("usermodul.php");
+/*
+require_once("usermodul.php");*/
 
 ?>
-<footer class="footer-container">
+<footer >
+    <div class="footer-container">
     <div class="bottom-nav">
 
 
@@ -23,5 +24,5 @@ require_once("usermodul.php");
     }
 
     ?>
-
+    </div>
 </footer>

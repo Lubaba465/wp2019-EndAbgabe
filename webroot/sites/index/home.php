@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Deutsche Schloesser | Home</title>
-    <link rel="stylesheet" href="css/indexlx.css">
+    <link rel="stylesheet" href="css/indexlxu.css">
 </head>
 <body>
 <div class="index-container reveal">
     <div class="slide ">
-        <h1 class="hd">ALLe Schloesser
+      <h1 class="hd">ALLe Schloesser
             in Deutschland  🏰</h1>
 <?php include "homeimage.php"; ?>
     </div>
@@ -53,7 +53,7 @@
 
                             $ergebnis = $db->query($sql);
                             foreach ($ergebnis as $zeil) { ?>
-                                <img class="castleimage" src="img/uploads/<?php echo $zeil['file_name'] ?>"/>
+                                <img class="castleimagecomment" src="img/uploads/<?php echo $zeil['file_name'] ?>"/>
                                 <div class="castleimg">
 
                                 </div>
@@ -91,11 +91,10 @@
 
 
                 </div>
-            <div class='reveal'>
             <?php
             include "image.php";
             ?>
-            </div>
+
         </div></div></div>
 <script>
 

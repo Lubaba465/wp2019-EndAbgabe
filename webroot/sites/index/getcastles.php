@@ -42,11 +42,13 @@ foreach ($ergebnis as $zeile) { ?>
 
     $ergebnis = $db->query($sql);
     foreach ($ergebnis as $zeile) { ?>
-
+            <div class="position">
+        <div class="castleimg "></div>
         <img class="castleimage" src="img/uploads/<?php echo $zeile['file_name'] ?>"/>
-        <div class="castleimg position">
 
-        </div>
+            </div>
+
+
     <?php } ?></div>
 
 

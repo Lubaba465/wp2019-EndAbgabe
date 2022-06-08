@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/admin/admins.css">
 
 </head>
-
+<body>
 <?php
 
 
@@ -40,6 +40,8 @@ include "templates/header.php";
         <div id="adminSection" class="navcontent"></div>
     </div>
 </div>
+</body>
 <?php
 include "templates/footer.php";?>
+
 </html>
