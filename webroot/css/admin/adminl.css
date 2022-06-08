@@ -3,7 +3,7 @@
     /*padding-bottom: .5em;*/
     border: 1px solid #a2a2a2;
     padding-top: 75px;
-    background-color: #f4f4f4;
+    background-color: #e9e7e7;
     -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
@@ -83,7 +83,7 @@
 .navcontent {
     flex: 1;
     padding: 25px;
-    background: #f5f5f5;
+    background: #e9e7e7;
     border-radius: 5px;
     /*display: none;*/
 }
@@ -98,6 +98,7 @@
     background: #212830;
     color: white;
     border-radius: 5px;
+
 }
 
 .content-grid .check-option{

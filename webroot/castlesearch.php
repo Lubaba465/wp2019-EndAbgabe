@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
 
-    <link rel="stylesheet" href="css/indexlxu.css">
+    <link rel="stylesheet" href="css/indexlt.css">
     <link rel="stylesheet" href="css/image.css">
     <script src="js/admin/castls.js"></script>
 </head>
@@ -15,10 +15,11 @@ include "templates/header.php";
 include "sites/search/castleSearch.php";
 
 
-include "templates/footer.php";
 ?>
 
 
 </body>
+<?php include "templates/footer.php";
+?>
 </html>
 

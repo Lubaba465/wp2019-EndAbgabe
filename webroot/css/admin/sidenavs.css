@@ -8,6 +8,7 @@
     width: 220px;
     background: #212830;
     border-radius: 5px;
+    height: 100vh;
 }
 
 .side-nav ul {

@@ -3,7 +3,7 @@
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/indexlxu.css">
+<link rel="stylesheet" href="css/indexlt.css">
 <link rel="stylesheet" href="css/details.css">
 <link rel="stylesheet" href="css/components/ratings.css">
 <script type="text/javascript" src="js/admin/ratings.js"></script>

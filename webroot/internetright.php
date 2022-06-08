@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
 
-    <link rel="stylesheet" href="css/indexlxu.css">
+    <link rel="stylesheet" href="css/indexlt.css">
 </head>
 <body>
 

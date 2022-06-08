@@ -3,9 +3,16 @@
     padding-bottom: .5em;
     background: #212830;
 color: white;
-position: absolute;    bottom:0;}
+    padding-right:  20%!important;
+
+    padding-left:  20%!important;
+
+    position: absolute;
+    bottom:0;
+}
+
+
 html {
-    min-height: 100%;
     position: relative;
 }
 
@@ -63,13 +70,14 @@ body {
     .footer-container {
         flex-direction: row;
         width: 100%;
-        margin: 0 auto;
+
     }
 }
 
 @media (min-width: 1025px) {
     .footer-container {
         flex-direction: row;
+
         justify-content: space-between;
     }
 

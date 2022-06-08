@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Deutsche Schloesser | Home</title>
-    <link rel="stylesheet" href="css/indexlxu.css">
+    <link rel="stylesheet" href="css/indexlt.css">
 </head>
 <body>
 <div class="index-container reveal">
