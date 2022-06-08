@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Deutsche Schloesser | Home</title>
-    <link rel="stylesheet" href="css/indexl.css">
+    <link rel="stylesheet" href="css/indexlx.css">
 </head>
 <body>
-<div class="index-container">
-    <div class="slide">
+<div class="index-container reveal">
+    <div class="slide ">
+        <h1 class="hd">ALLe Schloesser
+            in Deutschland  🏰</h1>
 <?php include "homeimage.php"; ?>
     </div>
-    <div class=" content-grid">
+    <div class=" content-grid ">
         <div>
 <!--            <h2 class="cnt-headline">Letzte Einträge</h2>
--->            <div>
+-->            <div class="reveal">
 
 
                 <?php
@@ -23,7 +25,7 @@
 
                 ?>
 
-                <h2 class="cnt-headline" style="color: #8D8D8D"> Letzte Kommentare</h2>
+                <h2 class="cnt-headline " style="color: #8D8D8D"> Letzte Kommentare</h2>
 
 
                         <?php
@@ -51,9 +53,10 @@
 
                             $ergebnis = $db->query($sql);
                             foreach ($ergebnis as $zeil) { ?>
-
                                 <img class="castleimage" src="img/uploads/<?php echo $zeil['file_name'] ?>"/>
+                                <div class="castleimg">
 
+                                </div>
                             <?php }?><div class="castledesc">
                         <?php
                         echo " @" . ($zeile['name']); ?></label><label>   <?php
@@ -88,11 +91,60 @@
 
 
                 </div>
-            </div>
+            <div class='reveal'>
             <?php
             include "image.php";
             ?>
-
+            </div>
         </div></div></div>
+<script>
+
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+
+            var elementVisible = 150;
+
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+
+            } else {
+                reveals[i].classList.remove("active");
+            }
+        }
+    }
+
+    window.addEventListener("scroll", reveal);
+
+    // To check the scroll position on page load
+    reveal();
+
+
+    function castleimg() {
+        var reveals = document.querySelectorAll(".castleimg");
+
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+
+            var elementVisible = 150;
+
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("activee");
+
+            } else {
+                reveals[i].classList.remove("activee");
+            }
+        }
+    }
+
+    window.addEventListener("scroll", castleimg);
+
+    // To check the scroll position on page load
+    castleimg();
+</script>
 </body>
 </html>

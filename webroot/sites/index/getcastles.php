@@ -44,7 +44,9 @@ foreach ($ergebnis as $zeile) { ?>
     foreach ($ergebnis as $zeile) { ?>
 
         <img class="castleimage" src="img/uploads/<?php echo $zeile['file_name'] ?>"/>
+        <div class="castleimg position">
 
+        </div>
     <?php } ?></div>
 
 
