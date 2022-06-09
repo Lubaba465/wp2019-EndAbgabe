@@ -16,6 +16,9 @@
                 <li><button class="accountSection" id="personDataUpd">Ändern</button></li>
             </ul>
         </div>
+    </div>
+
+    <div class="content-grid">
         <div>
             <h2 class="cnt-headline">Passwort Ändern</h2>
             <ul>
@@ -23,15 +26,6 @@
                 <li><button class="accountSection" id="passwordUpd">Ändern</button></li>
             </ul>
         </div>
-    </div>
 
-    <div class="content-grid">
-        <div>
-            <h2 class="cnt-headline">Konto deaktivieren</h2>
-            <ul>
-                <li>Brauchen Sie eine Pause von Ihrem Konto?</li>
-                <li><button class="accountSection" id="accountDeact">Konto deaktivieren</button></li>
-            </ul>
-        </div>
     </div>
 </div>

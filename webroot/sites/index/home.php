@@ -145,5 +145,11 @@
     // To check the scroll position on page load
     castleimg();
 </script>
+    <br>
+    <br> <br>
+    <br> <br>
+    <br> <br>
+    <br> <br>
+    <br>
 </body>
 </html>

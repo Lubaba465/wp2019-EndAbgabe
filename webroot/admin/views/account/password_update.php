@@ -1,6 +1,6 @@
 <head>
     <link rel="stylesheet" href="css/admin/castles.css">
-    <link rel="stylesheet" href="css/admin/side-nav.css">
+    <link rel="stylesheet" href="css/admin/sidenav.css">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="js/admin/account_info.js"></script>
 
