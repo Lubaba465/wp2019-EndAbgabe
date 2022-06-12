@@ -1,5 +1,8 @@
 <?php
 //require('../libs/config.php');
+include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
+
+$db = $DB;
 //$db = new PDO("sqlite:../database/german_castles.db");
 
 //$db = new PDO("sqlite:../database/german_castles.db");
@@ -32,15 +35,19 @@ if (isset($_GET["castleid"]) && $_GET["castleid"] != "") {
 
 if (isset($_GET["magazinid"]) && $_GET["magazinid"] != "") {
     $id = $_GET['magazinid'];
-    $query = "DELETE FROM " . TABLE_CASTLE_MAGAZIN . " WHERE magazinid = $id";
+
+
+    $sql = "DELETE FROM " . TABLE_CASTLE_MAGAZIN . " WHERE magazinid = $id";
+
     try {
-        $stmt = $db->prepare($query);
+
+        $stmt = $db->prepare($sql);
         $stmt->execute();
     } catch (Exception $ex) {
         echo "Fehler";//errorMessage($ex->getMessage());
     }
 }
-
+/*
 if (isset($_GET["ratCastleid"]) && $_GET["ratCastleid"] != "") {
     $id = $_GET['ratCastleid'];
     $query = "DELETE FROM " . TABLE_RATING_CASTLES . " WHERE ratingid = $id";
@@ -61,5 +68,5 @@ if (isset($_GET["ratFotoid"]) && $_GET["ratFotoid"] != "") {
     } catch (Exception $ex) {
         echo "Fehler";//errorMessage($ex->getMessage());
     }
-}
+}*/
 ?>
