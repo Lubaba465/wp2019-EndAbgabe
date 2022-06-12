@@ -10,7 +10,7 @@ require("magazin_controller.php");
 require($_SERVER['DOCUMENT_ROOT'] . '/wp2019EndAbgabe/config.php');
 
 $magazinController = new magazin_controller();
-//$userid = $_SESSION['userid'];
+$userid = $_SESSION['userid'];
 ?>
 <div id="magazin">
     <h1 class="content-title">Mein Magazin</h1>
@@ -18,7 +18,7 @@ $magazinController = new magazin_controller();
         <div>
             <h2 class="cnt-headline">Events</h2>
             <?php
-            $magazin = $magazinController->getMagazinUser("carola");
+            $magazin = $magazinController->getMagazinUser($userid);
             foreach ($magazin as $row) {
                 if ($row["magazin_type"] == 'E') {
                     ?>
@@ -26,16 +26,15 @@ $magazinController = new magazin_controller();
                         <div>
                             <h2 class="cnt-headline">
                                 <div class="content-grid">
-                                    <a class="column-left">
-                                        <?php echo htmlspecialchars($row["magazin_name"]) ?>
-                                    </a>
+                                         <?php echo htmlspecialchars($row["magazin_name"]) ?>
+
                                     <a class="column-right content-right">
                                         <!--                    <a class="navlinks admSection" id="myData"><i class="fa fa-fw fa-home"></i></a>-->
                                         <!--                    <a class="casSection" id="castleData"><i class="fa fa-fw fa-pencil"></i></a>-->
-                                        <a class="navlinks magDelete" id="<?php echo $row['magazinid'] ?>"><i
+                                        <a class="navlinks magDelete" style="color: black" id="<?php echo $row['magazinid'] ?>"><i
                                                     onclick="return confirm('Sind Sie sicher?');"
                                                     class="fa fa-fw fa-trash"></i></a>
-                                        <a class="navlinks magSection" id="<?php echo $row['magazinid'] ?>"><i
+                                        <a class="navlinks magSection" style="color: black"  id="<?php echo $row['magazinid'] ?>"><i
                                                     class="fa fa-fw fa-pencil"></i></a>
                                     </a>
                                 </div>
@@ -67,16 +66,16 @@ $magazinController = new magazin_controller();
                         <div>
                             <h2 class="cnt-headline">
                                 <div class="content-grid">
-                                    <a class="column-left">
+                                    <h1 class="column-left">
                                         <?php echo htmlspecialchars($row["magazin_name"]) ?>
-                                    </a>
+                                    </h1>
                                     <a class="column-right content-right">
                                         <!--                    <a class="navlinks admSection" id="myData"><i class="fa fa-fw fa-home"></i></a>-->
                                         <!--                    <a class="casSection" id="castleData"><i class="fa fa-fw fa-pencil"></i></a>-->
-                                        <a class="navlinks magDelete" id="<?php echo $row['magazinid'] ?>"><i
+                                        <a style="color: black" class="navlinks magDelete" id="<?php echo $row['magazinid'] ?>"><i
                                                     onclick="return confirm('Sind Sie sicher?');"
                                                     class="fa fa-fw fa-trash"></i></a>
-                                        <a class="navlinks magSection" id="<?php echo $row['magazinid'] ?>"><i
+                                        <a style="color: black" class="navlinks magSection" id="<?php echo $row['magazinid'] ?>"><i
                                                     class="fa fa-fw fa-pencil"></i></a>
                                     </a>
                                 </div>

@@ -8,7 +8,7 @@ $db = $DB;
 
 if (isset($_POST["fname"])) {
     try {
-
+        $_SESSION['userid']=$userid;
 
             $sql = "UPDATE " . TABLE_USERS . " SET
                 fname ='" . $_POST["fname"] . "',
@@ -17,7 +17,6 @@ if (isset($_POST["fname"])) {
                  WHERE userid = '" . $userid . "'";
             $stmt = $db->query($sql);
             if ($stmt->rowCount() > 0) {
-                session_destroy();
                 echo 'Ihre Daten wurden aktualisiert!';
             } else {
                 echo 'Ihr Daten wurden nicht aktualisiert!';
@@ -109,7 +108,7 @@ class account_controller
         $this->dns = DB_DRIVER . ':' . DB_DATABASE;
         $this->db = new PDO($this->dns);
         if (isset($_SESSION['userid'])) {
-            $this->userid = $_SESSION['userid'];
+            $userid = $_SESSION['userid'];
         }
     }
 
@@ -119,9 +118,11 @@ class account_controller
         $db_pass = "";
         $db_name = "german_castles";
 
-        $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
-
+        include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
         $userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 'anonym';
+
+        $db = new PDO("mysql:host=localhost;dbname=$db_name;" , $db_user, $db_pass);
+echo $userid;
 
         try {
             $sql = "SELECT * FROM " . TABLE_USERS . "  WHERE 

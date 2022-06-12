@@ -5,23 +5,18 @@
 </head>
 <?php
 include("account_controller.php");
+
+
 $accountController = new account_controller();
 $account = $accountController->getAccountData();
 
-$cUserID = null;
-$cFname = null;
-$cLName = null;
-$cEmail = null;
 
-if ($account['userid'] <> '' & $account['userid'] <> 'anonym') {
     $cUserID = $account['userid'];
     $cFname = $account['fname'];
     $cLName = $account['lname'];
     $cEmail = $account['email'];
 
-} else {
-    echo 'Invalid Data';
-}
+
 ?>
 
 <h1 class="content-title">Persönliche Daten bearbieten</h1>
@@ -31,7 +26,7 @@ if ($account['userid'] <> '' & $account['userid'] <> 'anonym') {
     <form action="" method="post" enctype="multipart/form-data">
 
     <label class="content-grid" for="userID">Benutzer ID</label>
-    <input class="content-grid" name="userID" id="userID" value="<?php echo $cUserID ?>" disabled="disabled"><br>
+    <input class="content-grid" name="userid" id="userid" value="<?php echo $cUserID ?>" disabled="disabled"><br>
 
     <label class="content-grid" for="fname">Vorname</label>
     <input class="content-grid" name="fname" id="fname" value="<?php echo $cFname ?>"><br>
@@ -56,12 +51,14 @@ if ($account['userid'] <> '' & $account['userid'] <> 'anonym') {
             var fname = document.getElementById("fname").value;
             var lname = document.getElementById("lname").value;
             var email = document.getElementById("email").value;
+            var accountUpd = document.getElementById("accountUpd").value;
+            var userid = document.getElementById("userid").value;
 
             if (confirm('Sind Sie sicher?')) {
                 $.ajax({
                     url: 'admin/views/account/account_controller.php',
                     type: 'POST',
-                    data: {pw: pwAccUpd, fname: fname, lname: lname, email: email},
+                    data: {accountUpd:accountUpd,userid:userid, pw: pwAccUpd, fname: fname, lname: lname, email: email},
                     error: function () {
                         alert('es ist ein Fehler aufgetreten!');
                     },

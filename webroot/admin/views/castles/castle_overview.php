@@ -17,9 +17,9 @@
                 <a class="column-right content-right">
                     <!--                    <a class="navlinks admSection" id="myData"><i class="fa fa-fw fa-home"></i></a>-->
                     <!--                    <a class="casSection" id="castleData"><i class="fa fa-fw fa-pencil"></i></a>-->
-                    <a class="navlinks casDelete" id="<?php echo $row['castleid'] ?>"><i
+                    <a class="navlinks casDelete" id="<?php echo $row['castleid'] ?>" style="color: black"> <i
                                 onclick="return confirm('Sind Sie sicher?');" class="fa fa-fw fa-trash"></i></a>
-                    <a class="navlinks casSection" id="<?php echo $row['castleid'] ?>"><i
+                    <a class="navlinks casSection" style="color: black" id="<?php echo $row['castleid'] ?>"><i
                                 class="fa fa-fw fa-pencil"></i></a>
                 </a>
             </div>

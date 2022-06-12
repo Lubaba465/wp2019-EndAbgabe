@@ -1,6 +1,5 @@
 <?php
 //require('../libs/config.php');
-require('../libs/constants.php');
 //$db = new PDO("sqlite:../database/german_castles.db");
 
 //$db = new PDO("sqlite:../database/german_castles.db");

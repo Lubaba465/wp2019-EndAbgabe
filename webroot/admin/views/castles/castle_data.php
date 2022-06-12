@@ -76,7 +76,7 @@ if ($castle_id == 0) {
 }
 ?>
 <?php
-/*if (isset($_POST["newCastle"])) {
+if (isset($_POST["newCastle"])) {
     echo "Eintrag hinzugef";
 
     $mountain = isset($_POST['mountain']) == 'Y' ? 'Y' : 'N';
@@ -152,18 +152,16 @@ if ($castle_id == 0) {
         );
         $command = $db->prepare($sql);
         $command->execute($values);
-        echo "Eintrag hinzugef";
+        echo "Eintrag hinzugefügt";
 
     } catch (PDOException $e) {
         echo 'Fehler: ' . htmlspecialchars($e->getMessage());
     }
-}
-*/?>
+}?>
 
 <h1 class="content-title">Schloss <?php echo $cTransType ?></h1>
 <div class="castle-container">
     <form action="imageupload.php" method="post" enctype="multipart/form-data">
-       <input type="text" name="userid" value="<?php echo $userid ?>">
 
         <input class="content-grid" id="castleid" name="castleid" type="hidden" value="<?php echo $cCastleId ?>">
         <input class="content-grid" type="text" id="castlename" name="castlename" placeholder="Schloss Name..."

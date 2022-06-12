@@ -1,6 +1,6 @@
 <head>
     <link rel="stylesheet" href="css/admin/castles.css">
-    <link rel="stylesheet" href="css/admin/side-nav.css">
+    <link rel="stylesheet" href="css/admin/sidenav.css">
 
 
 </head>
@@ -121,12 +121,12 @@ if ($magazin_id == 0) {
 
         var newMagazin =  document.getElementById("newMagazin").value;
 
-        alert('fsd')
 
         if (confirm('Sind Sie sicher?')) {
             $.ajax({
                 url: 'admin/views/magazin/magazin_controller.php',
                 type: 'POST',
+
                 data: {newMagazin:newMagazin,castleid:castleid,magazinType: magazinType, magazinname: magazinname,
                     magazindesc: magazindesc, magazindate: magazindate,url: url, active: active,
                     counties: counties, city: city },   error: function () {
@@ -134,6 +134,8 @@ if ($magazin_id == 0) {
                 },
                 success: function (data) {
                     alert(data);
+                    alert('fsd')
+
                 }
             });
         }

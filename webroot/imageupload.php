@@ -1,12 +1,13 @@
-<?php
-// File upload path
+
+<?php include_once ($_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/config.php");
+$userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : 'anonym';
+echo $userid;
 $targetDir = $_SERVER['DOCUMENT_ROOT']."/wp2019EndAbgabe/webroot/images/";
 $fileName = basename($_FILES['image']['name']);
 $targetFilePath = $targetDir . $fileName;
 $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
 $statusMsg = '';
-
-if(isset($_POST["updCastle"])&&isset($_POST["imagen"]) ){
+if(isset($_POST["updCastle"]) ){
     // Allow certain file formats
     $db_user = "root";
     $db_pass = "";
@@ -19,11 +20,10 @@ if(isset($_POST["updCastle"])&&isset($_POST["imagen"]) ){
     if(move_uploaded_file($_FILES["image"]["tmp_name"],"/Applications/XAMPP/xamppfiles/htdocs/wp2019EndAbgabe/webroot/img/uploads/".$_FILES['image']['name'])){
         // Insert image file name into database
         $image = $_FILES['image']['name'];
-        $userid="carola";
         $sql = "INSERT INTO gc_castle_fotos (
                    castleid,userid,file_name
                   )
-                  VALUES (".$_POST["castleid"].",'carola','$fileName')";
+                  VALUES (".$_POST["castleid"].",'$userid','$fileName')";
 
         echo $sql;
         $insert = $db->query($sql);
@@ -45,4 +45,7 @@ if(isset($_POST["updCastle"])&&isset($_POST["imagen"]) ){
 // Display status message
 echo $statusMsg;
 ?>
-<?php header("Location:admin.php");
+<?php
+
+
+header("Location:admin.php");

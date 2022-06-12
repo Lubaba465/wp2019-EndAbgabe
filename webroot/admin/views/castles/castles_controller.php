@@ -49,7 +49,6 @@ if (isset($_POST["newCastle"])) {
                   create_date
                   )
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        echo'gizuo';
         $values = array(
             $_SESSION['userid'],
             $_POST["castlename"],
@@ -83,23 +82,8 @@ if (isset($_POST["newCastle"])) {
 //            $fileSize = $_FILES['attachments']['size'][$i];
         // change size to whatever key you need - error, tmp_name etc
 //        }
-        if (isset($_FILES['images'])) {
-            foreach ($_FILES['images']['tmp_name'] as $key => $val) {
-//            $key = $_FILES['images']['tmp_name'][$i];
-                $castleid = $_POST["castleid"];
-                $targetDir = "../img/uploads/";
-
-                $filename = $_FILES['images']['name'][$key];
-                $filetype = $_FILES['images']['type'][$key];
-                $filetempname = $_FILES['images']['tmp_name'][$key];
-
-                $targetFilePath = $targetDir . $filename;
-                echo "sql";
+            echo "sql";
 //            $is_main = ($i == $len - 1) ? 'Y' : 'N';
-
-                if (move_uploaded_file($filetempname, "/Applications/XAMPP/xamppfiles/temp/testupload/".$_FILES['images']['name'])) {
-                    // Image db insert sql
-                    $insert = $db->query("INSERT into gc_castle_fotos (castleid	,userid,file_name,fotodate ) VALUES ($castleid, $userid,$filename,$filetempname)");
 
 
                     $command = $db->prepare($sql);
@@ -107,13 +91,11 @@ if (isset($_POST["newCastle"])) {
 
 
 
-                } else {
-                    $errorUpload = $_FILES['images']['name'][$key] . ', ';
-                }
+
                 header("Location: ../admin.php");
 
 //        echo "Eintrag hinzugef&uuml;gt.";
-            }}
+
     } catch (PDOException $e) {
         echo 'Fehler: ' . htmlspecialchars($e->getMessage());
     }
@@ -165,7 +147,6 @@ if (isset($_POST["updCastle"])) {
         $stmt = $db->prepare($sql);
         $stmt->execute();
 
-// Include the database configuration file
 
 
 
